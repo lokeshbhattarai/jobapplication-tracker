@@ -25,7 +25,8 @@ public class HomeController {
     
     @RequestMapping("/")
     public String loadWelcomePage(){
-        return "redirect:/login";
+        //return "redirect:/home";
+        return "home";
     }
     
     @RequestMapping("/login")
