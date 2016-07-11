@@ -1,0 +1,10 @@
+mum/waa/jobapplicationtracker/persistance/impl/UserDao.class
+mum/waa/jobapplicationtracker/configuration/AppInitializer.class
+mum/waa/jobapplicationtracker/configuration/HibernateConfiguration.class
+mum/waa/jobapplicationtracker/persistance/AbstractDao.class
+mum/waa/jobapplicationtracker/service/impl/UserService.class
+mum/waa/jobapplicationtracker/configuration/AppConfig.class
+mum/waa/jobapplicationtracker/model/User.class
+mum/waa/jobapplicationtracker/controller/HomeController.class
+mum/waa/jobapplicationtracker/service/IuserService.class
+mum/waa/jobapplicationtracker/persistance/IuserDao.class
