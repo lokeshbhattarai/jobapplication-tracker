@@ -13,37 +13,35 @@ jobApp.controller('jobController', function($scope, $http){
             return;
         }
         
-        $http.post('register', angular.toJson(user))
+        $http.post('addjob', angular.toJson(user))
                 .success(function(data){
-                    alert('User registered successfully !!!');
+                    alert('Job saved successfully !!!');
         });
     };
     
-    isValid = function(user){
+    isValid = function(job){
         var msg = '';
         
-        if(user == null || user == 'undefined'){
-            user = new Object();
+        if(job == null || job == 'undefined'){
+            job = new Object();
         }
         
-        if(user.firstName == null || user.firstName == '')
-            msg += 'First name cannot be empyt.\n';
-        if(user.lastName == null || user.lastName == '')
-            msg += 'Last name cannot be empyt.\n';
-        if(user.email == null || user.email == '')
-            msg += 'Email cannot be empyt.\n';
-        if(user.usesrname == null || user.usesrnamer == '')
-            msg += 'Username cannot be empyt.\n';
-        if(user.password == null || user.password == '')
-            msg += 'Password cannot be empyt.\n';
-        if(user.repassword == null || user.repassword == '')
-            msg += 'Re-password cannot be empyt.\n';
-        if(user.phone == null || user.phone == '')
-            msg += 'Phone cannot be empyt.\n';
-        
-        if(user.password != '' && user.repassword != '' && user.password != user.repassword){
-            msg += 'Password and re-password are not same.';
-        }
+        if(job.jobTitle == null || job.jobTitle == '')
+            msg += 'Job Title cannot be empty.\n';
+        if(job.companyName == null || job.companyName == '')
+            msg += 'Please provide company name.\n';
+        if(job.companyAddress == null || job.companyAddress == '')
+            msg +='Please provide company address.\n';
+        if(job.positionTitle == null || job.positionTitle == '')
+            msg +='Please provide title of the position.\n';
+        if(job.jobDescription == null || job.jobDescription == '')
+            msg +='Please provide job description.\n';
+        if(job.appliedDate == null || job.appliedDate == '')
+            msg += 'Please provide job applied date.\n';
+        if(job.contactPerson == null || job.contactPerson == '')
+            msg += 'Please provide contact person for the job.\n';
+        if(job.contactNumber == null || job.contactNumber == '')
+            msg += 'Please provide contact number.\n';
         
         return msg;
     };
