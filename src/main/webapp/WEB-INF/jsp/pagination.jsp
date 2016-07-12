@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Server Side Pagination in Angular js</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-theme.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
