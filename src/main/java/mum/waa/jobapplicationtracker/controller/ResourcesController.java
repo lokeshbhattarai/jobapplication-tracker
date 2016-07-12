@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author suraj
  */
 @Controller
-public class DashboardController {
+public class ResourcesController {
     
-    @RequestMapping("/dashboard")
-    public String loadDashboard(){        
-        return "home";
+    @RequestMapping("/userfaq")
+    public String loadUserFaq(){        
+        return "userfaq";
     }
     
     
