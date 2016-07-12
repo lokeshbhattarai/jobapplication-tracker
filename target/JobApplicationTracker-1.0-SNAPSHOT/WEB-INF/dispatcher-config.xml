@@ -28,7 +28,7 @@
         <property name = "sessionFactory" ref = "sessionFactory" />
     </bean>
       
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"  
+    <mvc:resources mapping="/resources/**" location="/resources/"  
 	cache-period="31556926"/>
     
     <!--DI for testing for user service.. to change at production--> 

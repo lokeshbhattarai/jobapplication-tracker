@@ -1,5 +1,6 @@
 /home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/persistance/AbstractDao.java
 /home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/model/JobLog.java
+/home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/model/NotificationLog.java
 /home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/model/JobEvent.java
 /home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/service/impl/UserService.java
 /home/lokex/hammerhead/NetbeansProjects/JobApplicationTracker/src/main/java/mum/waa/jobapplicationtracker/service/IuserService.java

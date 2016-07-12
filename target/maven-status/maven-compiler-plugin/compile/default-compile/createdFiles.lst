@@ -1,4 +1,5 @@
 mum/waa/jobapplicationtracker/model/JobEvent.class
+mum/waa/jobapplicationtracker/model/NotificationLog.class
 mum/waa/jobapplicationtracker/persistance/impl/UserDao.class
 mum/waa/jobapplicationtracker/configuration/AppInitializer.class
 mum/waa/jobapplicationtracker/persistance/AbstractDao.class
