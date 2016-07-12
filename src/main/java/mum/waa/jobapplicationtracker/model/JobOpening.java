@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,10 +36,16 @@ public class JobOpening {
     private Long id;
     
     private String jobTitle;
+    
+    @NotNull
     private String companyName;
+    
     private String companyAddress;
+    
     private String positionTitle;
+    
     private String jobDescription;
+    
     private LocalDateTime appliedDate;
     
     @ElementCollection
