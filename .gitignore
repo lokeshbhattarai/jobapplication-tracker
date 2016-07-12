@@ -1,0 +1,5 @@
+target/JobApplicationTracker-1.0-SNAPSHOT/WEB-INF/
+target/classes/
+target/maven-archiver/
+target/JobApplicationTracker-1.0-SNAPSHOT.war
+
