@@ -21,17 +21,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
     
-    @Autowired private IuserService service;
+//    DI done from dispatcher-config.xml
+    private IuserService service;
+
+    public IuserService getService() {
+        return service;
+    }
+
+    public void setService(IuserService service) {
+        this.service = service;
+    }
+    
+    
     
     @RequestMapping("/")
     public String loadWelcomePage(){
-        return "redirect:/login";
+        //return "redirect:/home";
+        return "login_newuser";
     }
     
     @RequestMapping("/login")
     public String getLoginPage(Model model){
         model.addAttribute("newUser", new User());
-        return "login";
+        return "login_newuser";
     }
     
     @RequestMapping(value="/signup",method=RequestMethod.GET)
@@ -40,7 +52,7 @@ public class HomeController {
         return "signup";
     }
     
-     @RequestMapping(value="/signup",method=RequestMethod.POST)
+    @RequestMapping(value="/signup",method=RequestMethod.POST)
     public String registerUser(User user, @RequestParam("confirm_password") String confirmPassword){
         
         service.addNewUser(user);
@@ -53,9 +65,6 @@ public class HomeController {
         return "dummy";
     }
     
-    @RequestMapping("index")
-    public String loadIndexPage(){
-        return "index";
-    }
+    
     
 }

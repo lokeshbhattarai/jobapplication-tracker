@@ -6,15 +6,21 @@
 package mum.waa.jobapplicationtracker.model;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -22,12 +28,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @Size(min = 3, max = 50)
     @Column(name = "username", nullable = false)
@@ -53,6 +58,42 @@ public class User implements Serializable{
     @Column(name = "phone", nullable = false)
     private String phone;
     
+    @Column(name = "forget_token")
+    private String forgetToken;
+    
+    @Column(name="is_active")
+    private boolean isActive;
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name="created_date")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private LocalDate createdDate;
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "last_login_date", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private LocalDate lastLogin;
+    
+    @Column(name="api_token")
+    private String apiToken;
+    
+    
+    @OneToMany(mappedBy = "user")//should be the instance variable name in JobOpening class
+    private List<JobOpening> appliedJobs = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user")
+    private List<JobLog> jobLogs = new ArrayList<>();
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Resource> resources = new ArrayList<Resource>();
+    
+    @OneToMany(mappedBy="user")
+    private List<NotificationLog> notificationLogs = new ArrayList<>();
+    
+    
     public User() {
     }
 
@@ -60,6 +101,16 @@ public class User implements Serializable{
         this.username = username;
         this.password = password;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
 
     public String getUsername() {
         return username;
@@ -109,36 +160,86 @@ public class User implements Serializable{
         this.phone = phone;
     }
 
-    
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.username);
-        hash = 23 * hash + Objects.hashCode(this.password);
-        return hash;
+    public String getForgetToken() {
+        return forgetToken;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        return true;
+    public void setForgetToken(String forgetToken) {
+        this.forgetToken = forgetToken;
     }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDate lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public String getApiToken() {
+        return apiToken;
+    }
+
+    public void setApiToken(String apiToken) {
+        this.apiToken = apiToken;
+    }
+
+    public List<JobOpening> getAppliedJobs() {
+        return appliedJobs;
+    }
+
+    public void setAppliedJobs(List<JobOpening> appliedJobs) {
+        this.appliedJobs = appliedJobs;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<JobLog> getJobLogs() {
+        return jobLogs;
+    }
+
+    public void setJobLogs(List<JobLog> jobLogs) {
+        this.jobLogs = jobLogs;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
+    public List<NotificationLog> getNotificationLogs() {
+        return notificationLogs;
+    }
+
+    public void setNotificationLogs(List<NotificationLog> notificationLogs) {
+        this.notificationLogs = notificationLogs;
+    }
+
     
     
     
