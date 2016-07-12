@@ -14,7 +14,7 @@
             body     { padding-top:30px; }
         </style>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-        <script src="resources/js/registrationController.js"></script>
+        <script src="resources/js/controller/registrationController.js"></script>
     </head>
     <body ng-app="registrationApp">
         <div ng-controller="registrationController" ng-init="init('localhost://')">

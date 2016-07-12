@@ -81,4 +81,19 @@ public class UserController {
         int id = 1;
     }
     
+    
+    @RequestMapping("/changepassword")
+    public String loadChangePassword(){        
+        return "changepassword";
+    }
+    
+    @RequestMapping("/settings")
+    public String loadSettings(){        
+        return "settings";
+    }
+    
+    @RequestMapping("/logout")
+    public String loadLogout(){        
+        return "logout";
+    }
 }
