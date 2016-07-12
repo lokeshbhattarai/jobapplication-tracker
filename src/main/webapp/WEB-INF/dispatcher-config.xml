@@ -8,12 +8,13 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
     ">
  
-  <context:component-scan base-package="mum.waa.jobapplicationtracker"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <context:component-scan base-package="mum.waa.jobapplicationtracker"/>
   
-  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/WEB-INF/jsp/" />
-    <property name="suffix" value=".jsp"/>
-  </bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp"/>
+    </bean>
   
     <bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/> 
@@ -24,12 +25,8 @@
     </bean>
   
       
-      <bean id = "transactionManager" class = "org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean id = "transactionManager" class = "org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name = "sessionFactory" ref = "sessionFactory" />
     </bean>
-      
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"  
-	cache-period="31556926"/>
-
     <mvc:annotation-driven validator="validator"/>
 </beans>

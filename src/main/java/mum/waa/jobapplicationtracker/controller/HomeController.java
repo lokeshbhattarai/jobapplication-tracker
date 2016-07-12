@@ -53,4 +53,9 @@ public class HomeController {
         return "dummy";
     }
     
+    @RequestMapping("index")
+    public String loadIndexPage(){
+        return "index";
+    }
+    
 }
