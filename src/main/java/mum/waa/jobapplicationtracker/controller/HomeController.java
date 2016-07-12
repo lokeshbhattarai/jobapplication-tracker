@@ -37,13 +37,13 @@ public class HomeController {
     @RequestMapping("/")
     public String loadWelcomePage(){
         //return "redirect:/home";
-        return "home";
+        return "login_newuser";
     }
     
     @RequestMapping("/login")
     public String getLoginPage(Model model){
         model.addAttribute("newUser", new User());
-        return "login";
+        return "login_newuser";
     }
     
     @RequestMapping(value="/signup",method=RequestMethod.GET)
