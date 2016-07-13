@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
@@ -46,6 +47,9 @@ public class User implements Serializable{
     @Size(min = 3, max = 50)
     @Column(name = "password", nullable = false)
     private String password;
+    
+    @Transient
+    private String repassword;
     
     @Size(min = 3, max = 50)
     @Column(name = "firstname")
@@ -132,6 +136,16 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
+    
+    
 
     public String getFirstName() {
         return firstName;

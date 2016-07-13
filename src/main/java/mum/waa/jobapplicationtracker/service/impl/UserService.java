@@ -49,5 +49,10 @@ public class UserService implements IuserService{
     public User getById(long userId) {
         return userDao.getUser(userId);
     }
+
+    @Override
+    public boolean validateRetypePassword(User user) {
+        return user.getPassword().equals(user.getRepassword());
+    }
     
 }
