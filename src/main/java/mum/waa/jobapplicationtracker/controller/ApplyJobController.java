@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class ApplyJobController {
+    
     @Autowired
     private IJobOpeningService jobService;
     
@@ -35,7 +36,12 @@ public class ApplyJobController {
         return "applyjob";
     }
     
-    @RequestMapping(value="/addjob", method = RequestMethod.POST)
+    @RequestMapping(value="/applyjob/addjob", method = RequestMethod.GET)
+    public String getNewJobFrom(){        
+        return "newjob";
+    }
+    
+    @RequestMapping(value="/applyjob/addjob", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request){
         long userId = (long)request.getSession().getAttribute("userId");

@@ -9,11 +9,13 @@ import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobOpening;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.IJobOpeningDao;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author lokex
  */
+@Repository
 public class JobOpeningDao extends AbstractDao<Long, JobOpening> implements IJobOpeningDao{
 
     @Override

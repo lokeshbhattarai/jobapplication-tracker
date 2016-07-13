@@ -19,7 +19,7 @@ public class JobSchedulingController {
     public String loadJobScheduling(){        
         return "jobscheduling";
     }
-    
+      
     
    
 }
