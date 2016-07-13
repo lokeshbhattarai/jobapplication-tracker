@@ -15,7 +15,12 @@ registrationApp.controller('registrationController', function($scope, $http){
         
         $http.post('register', angular.toJson(user))
                 .success(function(data){
+                    if(data.message == 'ok')
                     alert('User registered successfully !!!');
+                else{
+                    $scope.error = data.message;
+                    alert('Error: ' + data.message);
+                }
         });
     };
     
@@ -41,9 +46,9 @@ registrationApp.controller('registrationController', function($scope, $http){
         if(user.phone == null || user.phone == '')
             msg += 'Phone cannot be empyt.\n';
         
-        if(user.password != '' && user.repassword != '' && user.password != user.repassword){
-            msg += 'Password and re-password are not same.';
-        }
+        //if(user.password != '' && user.repassword != '' && user.password != user.repassword){
+        //    msg += 'Password and re-password are not same.';
+        //}
         
         return msg;
     };
