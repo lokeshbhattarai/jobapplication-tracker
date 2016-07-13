@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class ApplyJobController {
-
     @Autowired
     private IJobOpeningService jobService;
     
