@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="angularTable">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Server Side Pagination in Angular js</title>
@@ -9,13 +9,13 @@
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     </head>
     <body>
-        <div role="main" class="container theme-showcase">
+        <div role="main" class="container theme-showcase" ng-app="angularTable">
             <div class="" style="margin-top:90px;">
                 <div class="col-lg-8">
                     <div class="page-header">
                         <h2 id="tables">Server Side pagination in Angular js</h2>
                     </div>
-                    <div class="bs-component" ng-controller="listdata as data">
+                    <div class="bs-component" ng-init="init('getrecords')" ng-controller="listdata as data">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <script src="resources/js/dirPagination.js"></script>
-        <script src="resources/js/app.js"></script>
+        <script src="resources/js/controller/dirPagination.js"></script>
+        <script src="resources/js/controller/app.js"></script>
     </body>
 </html>

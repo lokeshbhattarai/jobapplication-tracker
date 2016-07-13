@@ -6,20 +6,15 @@
 package mum.waa.jobapplicationtracker.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author suraj
+ * @author lokex
  */
 @Controller
-public class JobSchedulingController {
+public class JobLogController {
     
-    @RequestMapping("/jobscheduling")
-    public String loadJobScheduling(){        
-        return "jobscheduling";
-    }
-      
     
-   
+    
+    
 }

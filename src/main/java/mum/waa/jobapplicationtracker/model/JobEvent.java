@@ -47,6 +47,9 @@ public class JobEvent {
     @Column(name="remind_me")
     private boolean remindMe;
     
+    @Column(name="remind_me_before")
+    private int remindDayBefore;
+    
     private String comment;
 
     public JobEvent() {

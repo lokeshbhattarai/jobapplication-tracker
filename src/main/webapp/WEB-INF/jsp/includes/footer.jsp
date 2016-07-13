@@ -22,12 +22,16 @@
         <!--<script src="<c:url value='/resources/js/bootstrap-datepicker.js'></c:url>"></script>-->
         <script src="<c:url value='/resources/js/bootstrap-table.js'></c:url>"></script>
         
+<<<<<<< HEAD
         <script src="<c:url value='/resources/js/angular.min.js'></c:url>"></script>
         <script src="<c:url value='/resources/js/controller/registrationController.js'></c:url>"></script>
         
         <script src="<c:url value='/resources/js/chart.bundle.js'></c:url>"></script>	
         <script src="<c:url value='/resources/js/moment.min.js'></c:url>"></script>	
         <script src="<c:url value='/resources/js/fullcalendar.js'></c:url>"></script>	
+=======
+        <script src="<c:url value='/resources/js/angular.min.js'></c:url>"></script>        
+>>>>>>> 614d785998b6f28bb9936eb17b17308397245993
         
         <script src="<c:url value='/resources/js/script.js'></c:url>"></script>	
 </body>

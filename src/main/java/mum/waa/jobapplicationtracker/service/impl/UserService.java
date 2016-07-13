@@ -18,21 +18,36 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserService /*implements IuserService*/{
+public class UserService implements IuserService{
 
     @Autowired private IuserDao userDao;
     
     
-//    @Override
-    public void addNewUser(final User user) {
+    @Override
+    public long addNewUser(final User user) {
         
        userDao.saveUser(user);
-        
+       return user.getId();
     }
 
-//    @Override
+    @Override
     public boolean authenticate(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        User matchedUser = userDao.getByUserName(user.getUsername());
+       if(matchedUser!=null){
+       
+           if(matchedUser.getPassword().equals(user.getPassword())){
+               return true;
+           }
+            
+       }
+       
+       return false;
+    }
+
+    @Override
+    public User getById(long userId) {
+        return userDao.getUser(userId);
     }
     
 }

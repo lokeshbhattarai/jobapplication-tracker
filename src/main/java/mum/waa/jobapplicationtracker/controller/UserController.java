@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
 import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.service.IuserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,71 +30,61 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class UserController {
-    
-    class employee implements Serializable{
-        String firstname;
-        String lastname;
 
-        public String getFirstname() {
-            return firstname;
-        }
+    @Autowired
+    private IuserService userService;
 
-        public void setFirstname(String firstname) {
-            this.firstname = firstname;
-        }
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-        public employee(String firstname, String lastname) {
-            this.firstname = firstname;
-            this.lastname = lastname;
-        }
+    @RequestMapping("/")
+    public String loadWelcomePage(){
+        //return "redirect:/home";
+        return "login_newuser";
     }
     
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String loadRegistrationPage(){
-        return "userregistration";
+    @RequestMapping("/login")
+    public String getLoginPage(Model model) {
+        model.addAttribute("newUser", new User());
+        return "login_newuser";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public String doLogin(@RequestBody User user) {
+        if (userService.authenticate(user)) {
+            return "redirect:/dashboard";
+        } else {
+            return "login_newuser";
+        }
+    }
+
+//    @RequestMapping(value = "/register", method = RequestMethod.GET)
+//    public String loadRegistrationPage() {
+//        return "userregistration";
+//    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public String registerUser(@RequestBody User user, HttpServletRequest request) {
+        long userId = userService.addNewUser(user);
+        request.getSession().setAttribute("userId", userId);
+        return "redirect:/dashboard";
     }
     
     @RequestMapping(value = "/pagination", method = RequestMethod.GET)
-    public String loadPaginationPage(){
+    public String loadPaginationPage() {
         return "pagination";
     }
-    
-    @RequestMapping(value = "/getrecords/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
-    public @ResponseBody List<employee> loadPaginationPage(@PathVariable int itemsPerPage, @PathVariable int pageno){
-        List<employee> emps = new ArrayList<>();
-        for (int i = 0; i < itemsPerPage; i++) {
-            emps.add(new employee(UUID.randomUUID().toString(), UUID.randomUUID().toString()));
-        }
-        return emps;
-    }
-    
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void registerUser(@RequestBody User user){
-        int id = 1;
-    }
-    
-    
     @RequestMapping("/changepassword")
-    public String loadChangePassword(){        
+    public String loadChangePassword() {
         return "changepassword";
     }
-    
+
     @RequestMapping("/settings")
-    public String loadSettings(){        
+    public String loadSettings() {
         return "settings";
     }
-    
+
     @RequestMapping("/logout")
-    public String loadLogout(){        
+    public String loadLogout() {
         return "logout";
     }
 }

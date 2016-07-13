@@ -724,6 +724,7 @@ h1.page-header {
 .navbar-inverse {
 	background:#036!important;
 }
+
 .box {
     border-bottom:2px solid #CCC;
 }
@@ -735,3 +736,7 @@ h1.page-header {
 .text-italic {
     font-style:italic
 }
+.btn.dashboardbtn {
+    margin-top: -65px;
+}
+

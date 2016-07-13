@@ -5,14 +5,17 @@
  */
 package mum.waa.jobapplicationtracker.persistance;
 
-import mum.waa.jobapplicationtracker.model.User;
+import java.util.List;
+import mum.waa.jobapplicationtracker.model.JobLog;
 
 /**
  *
  * @author lokex
  */
-public interface IuserDao {
-    void saveUser(User user);
-    User getUser(long userId);
-    User getByUserName(String username);
+public interface IJobLogDao {
+    
+    void addJobLog(JobLog jobLog);
+    List<JobLog> getJobLogs(long jobOpeningId);
+    
+    
 }
