@@ -17,8 +17,8 @@ import org.springframework.validation.Validator;
  * @author Dilip
  */
 @Component
-public class PasswordValidator implements Validator{
-  
+public class UserExistsValidator implements Validator{
+
     @Autowired
     private IuserService userService;
     
@@ -30,9 +30,8 @@ public class PasswordValidator implements Validator{
     @Override
     public void validate(Object obj, Errors errors) {
         User user = (User)obj;
-        if(!user.getPassword().equals(user.getRepassword())){
-            errors.rejectValue("repassword", "user.password.mismatched");
-        }
+        if(userService.getByUsername(user.getUsername())!=null){
+            errors.rejectValue("username", "user.username.already.exists");
     }
     
 }
