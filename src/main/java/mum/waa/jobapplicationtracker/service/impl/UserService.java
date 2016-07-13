@@ -24,10 +24,10 @@ public class UserService implements IuserService{
     
     
     @Override
-    public void addNewUser(final User user) {
+    public long addNewUser(final User user) {
         
        userDao.saveUser(user);
-        
+       return user.getId();
     }
 
     @Override
