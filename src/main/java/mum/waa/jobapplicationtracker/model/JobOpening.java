@@ -46,6 +46,9 @@ public class JobOpening {
     
     private String jobDescription;
     
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "applied_date", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDateTime appliedDate;
     
     @ElementCollection
