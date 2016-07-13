@@ -38,7 +38,7 @@ public class DummyUserService implements IuserService{
     
     
     @Override
-    public void addNewUser(final User user) {
+    public long addNewUser(final User user) {
         
 
         User dummyUser = new User("usertest", "test");
@@ -50,6 +50,7 @@ public class DummyUserService implements IuserService{
         dummyUser.setPhone("9723293223");
                 
        userDao.saveUser(dummyUser);
+       return dummyUser.getId();
         
     }
 
