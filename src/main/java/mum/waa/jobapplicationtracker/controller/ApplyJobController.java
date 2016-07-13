@@ -35,20 +35,15 @@ public class ApplyJobController {
         return "applyjob";
     }
     
-    @RequestMapping(value="/rest_addjob", method = RequestMethod.POST)
+    @RequestMapping(value="/addjob", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request){
         long userId = (long)request.getSession().getAttribute("userId");
         if(!result.hasErrors()){
-            jobService.addJobOpening(0, job);
+            jobService.addJobOpening(userId, job);
         }
         
     }
     
-    @RequestMapping(value = "/rest_alljob", method = RequestMethod.GET)
-    @ResponseBody
-    public List<JobOpening> showAllJobs(Model mode, HttpServletRequest request){
-        long userId = (long)request.getSession().getAttribute("userId");
-        return jobService.getAllJobOpenings(userId);
-    }
+    
 }
