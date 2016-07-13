@@ -63,6 +63,9 @@
             <div class="form-group">
                 <input class="form-control" placeholder="Email" name="email" type="email" autofocus="" ng-model="user.email" required="required">
             </div>
+              <div class="form-group">
+                <input class="form-control" placeholder="Username" name="username" type="text" value="" ng-model="user.username" required="required">
+            </div>
             <div class="form-group">
                 <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password" required="required">
             </div>
