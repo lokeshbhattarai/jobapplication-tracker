@@ -47,10 +47,8 @@ public class JobOpening {
     
     private String jobDescription;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "applied_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime appliedDate;
+    
+    private String appliedDate;
     
     @ElementCollection
     @CollectionTable(name="req_technologies",joinColumns = @JoinColumn(name="id"))
@@ -129,11 +127,11 @@ public class JobOpening {
         this.jobDescription = jobDescription;
     }
 
-    public LocalDateTime getAppliedDate() {
+    public String getAppliedDate() {
         return appliedDate;
     }
 
-    public void setAppliedDate(LocalDateTime appliedDate) {
+    public void setAppliedDate(String appliedDate) {
         this.appliedDate = appliedDate;
     }
 
