@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class ApplyJobController {
     
+    @Autowired private IJobOpeningService jobOpeningService;
+    
     class employee{
         public String name;
         public String address;
@@ -143,15 +145,23 @@ public class ApplyJobController {
     }
     
     @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.GET)
-    public String getAddLogPage(@RequestParam("jobId") String jobId) {
+    public String getAddLogPage(@RequestParam("jobId") String jobId, Model model) {
+        
+//        JobOpening job = new JobOpening();
+//        job.setId(Long.valueOf(jobId));
+        
+        JobLog jobLog = new JobLog();
+        jobLog.setJobOpening(jobOpeningService.getById(Long.valueOf(jobId)));
+        model.addAttribute("jobLog", jobLog);
         return "addJobLog";
     }
 
     @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.POST)
-    public String addJobLog(@RequestBody JobLog jobLog,HttpServletRequest request) {
+    public String addJobLog(JobLog jobLog,HttpServletRequest request) {
         
         User user = (User) request.getSession().getAttribute("user");
         
+        jobOpeningService.addJobLog(0, jobLog);
         return "dummy";
     }
 }

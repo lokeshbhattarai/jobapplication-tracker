@@ -31,7 +31,7 @@
                             <tr dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">
                                 <td>{{user.companyName}}</td>
                                 <td>{{user.jobDescription}}</td>
-                                <td><a href="/applyjob/addlog?jobId={{user.id}}">Add Log</a></td>
+                                <td><a href="applyjob/addlog?jobId={{user.id}}">Add Log</a></td>
                             </tr>
                         </tbody>
                     </table> 

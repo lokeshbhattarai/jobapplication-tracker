@@ -1,9 +1,11 @@
 var jobApp = angular.module('jobApp', []);
 
-jobApp.controller('jobLogController', function($scope, $http){
+jobApp.controller('jlController', function($scope, $http){
     
-    $scope.init = function(url){
+    $scope.init = function(url, jobid){
         $scope.url = url;
+        $scope.jobid = jobid;
+        alert(jobid);
     };
     
     $scope.addJobLog = function(jobLog){
