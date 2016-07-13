@@ -18,5 +18,7 @@ public interface IuserService {
    boolean authenticate(User user);
    
    User getById(long userId);
+   
+   User getByUsername(String username);
     
 }
