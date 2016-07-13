@@ -5,6 +5,8 @@
  */
 package mum.waa.jobapplicationtracker.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.service.IuserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +55,10 @@ public class HomeController {
     }
     
     @RequestMapping(value="/signup",method=RequestMethod.POST)
-    public String registerUser(User user, @RequestParam("confirm_password") String confirmPassword){
-        
-        service.addNewUser(user);
-              
+    public String registerUser(User user, @RequestParam("confirm_password") String confirmPassword, HttpServletRequest request){
+        //addNewUser will returns userId, and store into session.
+        long userId = service.addNewUser(user);
+        request.getSession().setAttribute("userId", userId);
         return "redirect:/dummy";
     }
     
