@@ -32,7 +32,22 @@ public class UserService implements IuserService{
 
     @Override
     public boolean authenticate(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        User matchedUser = userDao.getByUserName(user.getUsername());
+       if(matchedUser!=null){
+       
+           if(matchedUser.getPassword().equals(user.getPassword())){
+               return true;
+           }
+            
+       }
+       
+       return false;
+    }
+
+    @Override
+    public User getById(long userId) {
+        return userDao.getUser(userId);
     }
     
 }
