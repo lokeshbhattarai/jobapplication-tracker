@@ -32,7 +32,7 @@ registrationApp.controller('registrationController', function($scope, $http){
             msg += 'Last name cannot be empyt.\n';
         if(user.email == null || user.email == '')
             msg += 'Email cannot be empyt.\n';
-        if(user.usesrname == null || user.usesrnamer == '')
+        if(user.username == null || user.username == '')
             msg += 'Username cannot be empyt.\n';
         if(user.password == null || user.password == '')
             msg += 'Password cannot be empyt.\n';
