@@ -8,6 +8,9 @@ package mum.waa.jobapplicationtracker.persistance.impl;
 import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.IuserDao;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,6 +23,26 @@ public class UserDao extends AbstractDao<Integer, User> implements IuserDao{
     @Override
     public void saveUser(User user) {
         persist(user);
+    }
+
+    @Override
+    public User getUser(long userId) {
+//      Query query = getSession().createSQLQuery("select * from users where id=:userId");
+//        query.setString("userId", String.valueOf(userId));
+//        query.executeUpdate();
+        return getByCriteria("id", userId);
+    }
+
+    @Override
+    public User getByUserName(String username) {
+        return getByCriteria("username", username);
+    }
+    
+    
+    public User getByCriteria(String columnName,Object criteriaValue){
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq(columnName, criteriaValue));
+        return (User) criteria.uniqueResult();
     }
     
 }
