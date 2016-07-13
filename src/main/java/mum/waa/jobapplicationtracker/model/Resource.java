@@ -5,6 +5,7 @@
  */
 package mum.waa.jobapplicationtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name="resources")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Resource {
     
     @Id

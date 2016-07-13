@@ -5,6 +5,7 @@
  */
 package mum.waa.jobapplicationtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author Dilip
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MultiFileUpload {
     List<FileUpload> files = new ArrayList<FileUpload>();
      
