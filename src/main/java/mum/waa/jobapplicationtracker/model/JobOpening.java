@@ -60,10 +60,10 @@ public class JobOpening {
     
     private int statusId;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "end_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime endDate;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String endDate;
     
     private String contactPerson;
     
@@ -153,11 +153,11 @@ public class JobOpening {
         this.statusId = statusId;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

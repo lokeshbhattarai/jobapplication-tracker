@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import mum.waa.jobapplicationtracker.model.JobLog;
 import mum.waa.jobapplicationtracker.model.JobOpening;
+import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.service.IJobOpeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -30,6 +33,32 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class ApplyJobController {
+    
+    class employee{
+        public String name;
+        public String address;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+        
+        public employee(String a, String b){
+            this.name = a;
+            this.address = b;
+        }
+    }
 
     @Autowired
     private IJobOpeningService jobService;
@@ -37,6 +66,15 @@ public class ApplyJobController {
     @RequestMapping("/applyjob")
     public String loadDashboard() {
         return "applyjob";
+    }
+    
+    @RequestMapping(value = "/getemp/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
+    public @ResponseBody List<employee> getemplo(@PathVariable int itemsPerPage, @PathVariable int pageno){
+        List<employee> list = new ArrayList<>();
+        list.add(new employee("aa", "bb"));
+        list.add(new employee("a1", "b1"));
+        list.add(new employee("a2", "b2"));
+        return list;
     }
 
     @RequestMapping(value = "/applyjoblist", method = RequestMethod.GET)
@@ -46,22 +84,30 @@ public class ApplyJobController {
 
     @RequestMapping(value = "/getappliedjoblist/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
     public @ResponseBody
-    List<JobOpening> getAppliedJobList(String filter, @PathVariable int itemsPerPage, @PathVariable int pageno) {
+    List<JobOpening> getAppliedJobList(String filter, @PathVariable int itemsPerPage, @PathVariable int pageno,HttpServletRequest request) {
         List<JobOpening> jobs = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        
+        User user = (User)request.getSession().getAttribute("user");
+        
+//        jobs = jobService.getAllJobOpenings(user.getId());
+        
+       for (int i = 0; i < 10; i++) {
             JobOpening job = new JobOpening();
+            job.setId((long)i);
             job.setJobTitle("c# developer");
             job.setCompanyName("Microsoft Tech");
             jobs.add(job);
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 10; i < 15; i++) {
             JobOpening job = new JobOpening();
+            job.setId((long)i);
             job.setJobTitle("java developer");
             job.setCompanyName("Oracle Tech");
             jobs.add(job);
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 15; i < 20; i++) {
             JobOpening job = new JobOpening();
+            job.setId((long)i);
             job.setJobTitle("Javascript developer");
             job.setCompanyName("Google Tech");
             jobs.add(job);
@@ -94,5 +140,18 @@ public class ApplyJobController {
             jobService.addJobOpening(userId, job);
         }
 
+    }
+    
+    @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.GET)
+    public String getAddLogPage(@RequestParam("jobId") String jobId) {
+        return "addJobLog";
+    }
+
+    @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.POST)
+    public String addJobLog(@RequestBody JobLog jobLog,HttpServletRequest request) {
+        
+        User user = (User) request.getSession().getAttribute("user");
+        
+        return "dummy";
     }
 }
