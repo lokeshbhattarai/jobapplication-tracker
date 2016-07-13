@@ -18,13 +18,13 @@
             Company address: <input type="text" ng-model="job.companyAddress" required /><br />
             Position title: <input type="text" ng-model="job.positionTitle" required /><br />
             Job description: <input type="text" ng-model="job.jobDescription" required /><br />
-            Apply date: <input type="text" ng-model="job.appliedDate" required /><br />
+            Apply date: <input type="text" ng-model="jobx.appliedDateTemp" /><br />
             Contact person: <input type="text" ng-model="job.contactPerson" required /><br />
             Contact no: <input type="text" ng-model="job.contactNumber" required /><br />
 
-            <input type="button" ng-click="addJob(job)" value="Save" />
+            <input type="button" ng-click="addJob(job, jobx.appliedDateTemp)" value="Save" />
         </form>
     </div>
 </div>
 <%@include  file="includes/footer.jsp" %>   
-<script src="resources/js/controller/jobController.js"></script>
+<script src="<c:url value='/resources/js/controller/jobController.js'></c:url>"></script>
