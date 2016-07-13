@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,10 +36,19 @@ public class JobOpening {
     private Long id;
     
     private String jobTitle;
+    
+    @NotNull
     private String companyName;
+    
     private String companyAddress;
+    
     private String positionTitle;
+    
     private String jobDescription;
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "applied_date", nullable = false)
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDateTime appliedDate;
     
     @ElementCollection
@@ -68,8 +76,8 @@ public class JobOpening {
     @JoinColumn(name = "user_id")// creates a column in JobOpening table with a foreign key "user_id" referencing to userId
     private User user;
     
-    @OneToMany(mappedBy="jobOpening")
-    private List<NotificationLog> notificationLogs = new ArrayList<>();
+//    @OneToMany(mappedBy="jobOpening")
+//    private List<NotificationLog> notificationLogs = new ArrayList<>();
     
 
     public JobOpening() {
@@ -188,14 +196,13 @@ public class JobOpening {
         this.logs = logs;
     }
 
-    public List<NotificationLog> getNotificationLogs() {
-        return notificationLogs;
-    }
-
-    public void setNotificationLogs(List<NotificationLog> notificationLogs) {
-        this.notificationLogs = notificationLogs;
-    }
-    
+//    public List<NotificationLog> getNotificationLogs() {
+//        return notificationLogs;
+//    }
+//
+//    public void setNotificationLogs(List<NotificationLog> notificationLogs) {
+//        this.notificationLogs = notificationLogs;
+//    }
     
     
 }
