@@ -13,4 +13,6 @@ import mum.waa.jobapplicationtracker.model.User;
  */
 public interface IuserDao {
     void saveUser(User user);
+    User getUser(long userId);
+    User getByUserName(String username);
 }

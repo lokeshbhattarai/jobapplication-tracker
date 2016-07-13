@@ -49,29 +49,33 @@
   </div>
   <!-- /.col-->
   <div class="col-xs-4 col-xs-offset-1">
-    <div class="login-panel panel panel-default">
+    <div class="login-panel panel panel-default" ng-app="registrationApp">
       <div class="panel-heading">Create New Account</div>
-      <div class="panel-body">
+      <div class="panel-body" ng-controller="registrationController" ng-init="init('localhost://')">
         <form role="form">
           <fieldset>
             <div class="form-group">
-              <input class="form-control" placeholder="First Name" name="fname" type="text">
+                <input class="form-control" placeholder="First Name" name="fname" type="text" ng-model="user.firstName" required="required">
             </div>
             <div class="form-group">
-              <input class="form-control" placeholder="Last Name" name="lname" type="text">
+                <input class="form-control" placeholder="Last Name" name="lname" type="text" ng-model="user.lastName" required="required">
             </div>
             <div class="form-group">
-              <input class="form-control" placeholder="Email" name="email" type="email" autofocus="">
+                <input class="form-control" placeholder="Email" name="email" type="email" autofocus="" ng-model="user.email" required="required">
             </div>
             <div class="form-group">
-              <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password" required="required">
             </div>
             <div class="form-group">
-              <input class="form-control" placeholder="Re-type Password" name="repassword" type="password" value="">
+                <input class="form-control" placeholder="Re-type Password" name="repassword" type="password" value="" ng-model="user.repassword" required="required">
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="form-group">
+                <input class="form-control" placeholder="Phone" name="phone" type="text" value="" ng-model="user.phone" required="required">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="register(user)">Sign Up</button>
           </fieldset>
         </form>
+          <pre>user = {{user| json}}</pre>
       </div>
     </div>
   </div>

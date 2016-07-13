@@ -13,7 +13,9 @@ import mum.waa.jobapplicationtracker.model.User;
  */
 public interface IuserService {
 
-   void addNewUser(User user);
+   long addNewUser(User user);
    boolean authenticate(User user);
+   
+   User getById(long userId);
     
 }
