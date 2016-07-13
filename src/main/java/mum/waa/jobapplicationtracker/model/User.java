@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
@@ -36,28 +37,30 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "username", nullable = false)
     private String username;
     
+    @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "password", nullable = false)
     private String password;
     
     @Size(min = 3, max = 50)
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "firstname")
     private String firstName;
     
     @Size(min = 3, max = 50)
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname")
     private String lastName;
     
     @Size(min = 3, max = 50)
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
     
     @Size(min = 3, max = 50)
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone")
     private String phone;
     
     @Column(name = "forget_token")
@@ -72,7 +75,7 @@ public class User implements Serializable{
     private LocalDate createdDate;
     
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "last_login_date", nullable = false)
+    @Column(name = "last_login_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate lastLogin;
     

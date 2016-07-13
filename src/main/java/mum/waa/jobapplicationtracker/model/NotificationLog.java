@@ -38,7 +38,7 @@ public class NotificationLog {
 //    private JobOpening jobOpening;
     
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "send_date", nullable = false)
+    @Column(name = "send_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate sendDate;
     

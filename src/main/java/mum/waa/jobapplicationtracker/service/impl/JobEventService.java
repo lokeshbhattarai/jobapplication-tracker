@@ -7,7 +7,11 @@ package mum.waa.jobapplicationtracker.service.impl;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobEvent;
+import mum.waa.jobapplicationtracker.persistance.IJobEventDao;
 import mum.waa.jobapplicationtracker.service.IJobEventService;
+import mum.waa.jobapplicationtracker.service.IJobOpeningService;
+import mum.waa.jobapplicationtracker.service.IuserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,19 +21,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class JobEventService implements IJobEventService{
 
+    @Autowired private IJobEventDao jobEventDao;
+    
+    @Autowired private IJobOpeningService jobOpeningService;
+    
+    @Autowired private IuserService userService;
+    
     @Override
     public List<JobEvent> getAllJobEvents(long userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jobEventDao.getAllJobEvents(userId);
     }
 
     @Override
     public List<JobEvent> getJobEventsByJob(long userId, long jobOpeningId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jobEventDao.getJobEventsByJob(userId, jobOpeningId);
     }
 
     @Override
     public void addJobEvent(long userId, long jobOpeningId, JobEvent jobEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jobEvent.setJobOpening(jobOpeningService.getById(jobOpeningId));
+        jobEvent.setUser(userService.getById(userId));
+        jobEventDao.addJobEvent(jobEvent);
+        
+    }
+
+    @Override
+    public JobEvent getById(long Id) {
+        return jobEventDao.getById(Id);
     }
     
     
