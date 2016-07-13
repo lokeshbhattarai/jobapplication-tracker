@@ -33,9 +33,9 @@ public class NotificationLog {
     @JoinColumn(name="user_id")
     private User user;
     
-    @ManyToOne
-    @JoinColumn(name="job_opening_id")
-    private JobOpening jobOpening;
+//    @ManyToOne
+//    @JoinColumn(name="job_opening_id")
+//    private JobOpening jobOpening;
     
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "send_date", nullable = false)
@@ -65,13 +65,13 @@ public class NotificationLog {
         this.user = user;
     }
 
-    public JobOpening getJobOpening() {
-        return jobOpening;
-    }
-
-    public void setJobOpening(JobOpening jobOpening) {
-        this.jobOpening = jobOpening;
-    }
+//    public JobOpening getJobOpening() {
+//        return jobOpening;
+//    }
+//
+//    public void setJobOpening(JobOpening jobOpening) {
+//        this.jobOpening = jobOpening;
+//    }
 
     public LocalDate getSendDate() {
         return sendDate;

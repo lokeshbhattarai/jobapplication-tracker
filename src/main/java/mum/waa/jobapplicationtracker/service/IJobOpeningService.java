@@ -20,13 +20,11 @@ public interface IJobOpeningService {
     
     List<JobOpening> getAllJobOpenings(long userId);
     
+    JobOpening getById(long jobOpeningId);
+    
     List<JobLog> getJobLogs(long jobOpeningId);
     
-    List<NotificationLog> getNotificationLogs(long jobOpeningId);
-    
     void addJobLog(long jobOpeningId,JobLog jobLog);
-    
-    void addNotificationLog(long jobOpeningId,NotificationLog notificationLog);
     
     void logJobAppy(long jobOpeningId);
 }
