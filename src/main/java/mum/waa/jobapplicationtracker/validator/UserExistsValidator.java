@@ -17,11 +17,11 @@ import org.springframework.validation.Validator;
  * @author Dilip
  */
 @Component
-public class UserExistsValidator implements Validator{
+public class UserExistsValidator implements Validator {
 
     @Autowired
     private IuserService userService;
-    
+
     @Override
     public boolean supports(Class<?> type) {
         return User.class.isAssignableFrom(type);
@@ -29,9 +29,10 @@ public class UserExistsValidator implements Validator{
 
     @Override
     public void validate(Object obj, Errors errors) {
-        User user = (User)obj;
-        if(userService.getByUsername(user.getUsername())!=null){
+        User user = (User) obj;
+        if (userService.getByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "user.username.already.exists");
+        }
+
     }
-    
 }
