@@ -1,3 +1,4 @@
+<%@page import="mum.waa.jobapplicationtracker.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -37,7 +38,12 @@
 
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-                                &nbsp; <i class="fa fa-user" aria-hidden="true"></i> Welcome User: Admin <span class="caret"></span>
+                                &nbsp; <i class="fa fa-user" aria-hidden="true"></i> Welcome User: <%
+                                    
+                                    User u = (User)session.getAttribute("user");
+                                    out.println(u.getUsername());
+            
+                                    %> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#"> <i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
