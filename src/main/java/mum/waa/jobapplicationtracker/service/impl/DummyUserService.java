@@ -22,7 +22,7 @@ import org.springframework.transaction.support.TransactionTemplate;
  */
 @Service
 @Transactional
-public class DummyUserService implements IuserService{
+public class DummyUserService {
 
     @Autowired private IuserDao userDao;
     
@@ -37,7 +37,6 @@ public class DummyUserService implements IuserService{
     
     
     
-    @Override
     public long addNewUser(final User user) {
         
 
@@ -54,7 +53,6 @@ public class DummyUserService implements IuserService{
         
     }
 
-    @Override
     public boolean authenticate(User user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

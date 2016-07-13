@@ -15,5 +15,7 @@ public interface IuserService {
 
    long addNewUser(User user);
    boolean authenticate(User user);
+   
+   User getById(long userId);
     
 }

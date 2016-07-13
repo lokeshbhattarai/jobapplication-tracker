@@ -32,10 +32,10 @@
 	cache-period="31556926"/>
     
     <!--DI for testing for user service.. to change at production--> 
-    <bean id ="homeController" class="mum.waa.jobapplicationtracker.controller.HomeController">
+<!--    <bean id ="homeController" class="mum.waa.jobapplicationtracker.controller.HomeController">
         <property name="service" ref="testUserService"/>
     </bean>
-    <bean id="testUserService" class="mum.waa.jobapplicationtracker.service.impl.DummyUserService"/>
+    <bean id="testUserService" class="mum.waa.jobapplicationtracker.service.impl.DummyUserService"/>-->
 
     <mvc:annotation-driven validator="validator"/>
 </beans>
