@@ -5,10 +5,6 @@
  */
 package mum.waa.jobapplicationtracker.controller;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.service.IuserService;
@@ -16,17 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
- * @author lokex
+ * @author dilip
  */
 @Controller
 public class UserController {
@@ -48,8 +41,9 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public String doLogin(@RequestBody User user) {
+    public String doLogin(@RequestBody User user, HttpServletRequest request) {
         if (userService.authenticate(user)) {
+            request.getSession().setAttribute("user", user);
             return "redirect:/dashboard";
         } else {
             return "login_newuser";
@@ -65,7 +59,7 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public String registerUser(@RequestBody User user, HttpServletRequest request) {
         long userId = userService.addNewUser(user);
-        request.getSession().setAttribute("userId", userId);
+        request.getSession().setAttribute("user", user);
         return "redirect:/dashboard";
     }
     
