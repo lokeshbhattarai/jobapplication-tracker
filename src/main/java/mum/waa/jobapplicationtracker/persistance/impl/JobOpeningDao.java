@@ -49,5 +49,12 @@ public class JobOpeningDao extends AbstractDao<Long, JobOpening> implements IJob
         query.executeUpdate();
         
     }
+
+    @Override
+    public JobOpening getById(long jobOpeningId) {
+         Criteria criteria = createEntityCriteria();
+         criteria.add(Restrictions.eq("id", jobOpeningId));
+         return (JobOpening) criteria.uniqueResult();
+    }
     
 }

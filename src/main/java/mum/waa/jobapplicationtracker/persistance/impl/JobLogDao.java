@@ -9,6 +9,8 @@ import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobLog;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.IJobLogDao;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,13 +21,15 @@ import org.springframework.stereotype.Repository;
 public class JobLogDao extends AbstractDao<Long, JobLog> implements IJobLogDao{
 
     @Override
-    public void addJobLog(long jobOpeningId, JobLog jobLog) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addJobLog(JobLog jobLog) {
+        persist(jobLog);
     }
 
     @Override
     public List<JobLog> getJobLogs(long jobOpeningId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("job_opening_id", jobOpeningId));
+        return (List<JobLog>) criteria.list();
     }
     
 }

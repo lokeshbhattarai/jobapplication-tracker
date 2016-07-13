@@ -47,6 +47,14 @@ public class JobEvent {
     @Column(name="remind_me")
     private boolean remindMe;
     
+    @Column(name="remind_me_before")
+    private int remindDayBefore;
+    
+    @Column(name="remind_date")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String remindDate;
+    
     private String comment;
 
     public JobEvent() {
@@ -98,6 +106,22 @@ public class JobEvent {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public int getRemindDayBefore() {
+        return remindDayBefore;
+    }
+
+    public void setRemindDayBefore(int remindDayBefore) {
+        this.remindDayBefore = remindDayBefore;
+    }
+
+    public String getRemindDate() {
+        return remindDate;
+    }
+
+    public void setRemindDate(String remindDate) {
+        this.remindDate = remindDate;
     }
     
     

@@ -7,7 +7,6 @@ package mum.waa.jobapplicationtracker.service;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobEvent;
-import mum.waa.jobapplicationtracker.model.JobLog;
 
 /**
  *
@@ -16,6 +15,10 @@ import mum.waa.jobapplicationtracker.model.JobLog;
 public interface IJobEventService {
     
     List<JobEvent> getAllJobEvents(long userId);
+    
     List<JobEvent> getJobEventsByJob(long userId,long jobOpeningId);
+    
     void addJobEvent(long userId,long jobOpeningId,JobEvent jobEvent);
+    
+    JobEvent getById(long Id);
 }

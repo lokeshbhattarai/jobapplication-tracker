@@ -13,6 +13,7 @@ import mum.waa.jobapplicationtracker.model.User;
  */
 public interface IuserService {
 
+   boolean validateRetypePassword(User user);
    long addNewUser(User user);
    boolean authenticate(User user);
    

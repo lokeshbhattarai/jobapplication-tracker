@@ -37,7 +37,6 @@ public class JobOpening {
     
     private String jobTitle;
     
-    @NotNull
     private String companyName;
     
     private String companyAddress;
@@ -47,7 +46,7 @@ public class JobOpening {
     private String jobDescription;
     
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "applied_date", nullable = false)
+    @Column(name = "applied_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDateTime appliedDate;
     
@@ -59,9 +58,8 @@ public class JobOpening {
     
     private int statusId;
     
-    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDateTime endDate;
     
@@ -75,9 +73,6 @@ public class JobOpening {
     @ManyToOne
     @JoinColumn(name = "user_id")// creates a column in JobOpening table with a foreign key "user_id" referencing to userId
     private User user;
-    
-    @OneToMany(mappedBy="jobOpening")
-    private List<NotificationLog> notificationLogs = new ArrayList<>();
     
 
     public JobOpening() {
@@ -196,14 +191,5 @@ public class JobOpening {
         this.logs = logs;
     }
 
-    public List<NotificationLog> getNotificationLogs() {
-        return notificationLogs;
-    }
-
-    public void setNotificationLogs(List<NotificationLog> notificationLogs) {
-        this.notificationLogs = notificationLogs;
-    }
-    
-    
     
 }

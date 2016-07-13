@@ -6,9 +6,7 @@
 package mum.waa.jobapplicationtracker.persistance;
 
 import java.util.List;
-import mum.waa.jobapplicationtracker.model.JobLog;
 import mum.waa.jobapplicationtracker.model.JobOpening;
-import mum.waa.jobapplicationtracker.model.NotificationLog;
 
 /**
  *
@@ -28,4 +26,6 @@ public interface IJobOpeningDao {
 //    void addNotificationLog(long jobOpeningId,NotificationLog notificationLog);
     
     void logJobAppy(long jobOpeningId);
+    
+    JobOpening getById(long jobOpeningId);
 }

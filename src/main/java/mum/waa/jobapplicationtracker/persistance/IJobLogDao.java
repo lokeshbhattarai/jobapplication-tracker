@@ -14,7 +14,8 @@ import mum.waa.jobapplicationtracker.model.JobLog;
  */
 public interface IJobLogDao {
     
-    void addJobLog(long jobOpeningId, JobLog jobLog);
+    void addJobLog(JobLog jobLog);
     List<JobLog> getJobLogs(long jobOpeningId);
+    
     
 }

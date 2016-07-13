@@ -9,10 +9,12 @@
         <title>Dashboard</title>
 
         <link href='<c:url value="/resources/css/bootstrap.css"></c:url>' rel="stylesheet">
-        <link href='<c:url value="/resources/css/datepicker3.css"></c:url>' rel="stylesheet">
+        <!--<link href='<c:url value="/resources/css/datepicker3.css"></c:url>' rel="stylesheet">-->
         <link href="<c:url value='/resources/css/font-awesome.min.css'></c:url>" rel="stylesheet">
+        
         <link href="<c:url value='/resources/css/styles.css'></c:url>" rel="stylesheet">
-
+<link href="<c:url value='/resources/css/fullcalendar.css'></c:url>" rel="stylesheet">
+       
             <!--[if lt IE 9]>
             <script src="<c:url value='/resources/js/html5shiv.js'></c:url>"></script>
             <script src="<c:url value='/resources/js/respond.min.js'></c:url>"></script>
