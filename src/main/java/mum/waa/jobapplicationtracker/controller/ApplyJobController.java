@@ -91,42 +91,23 @@ public class ApplyJobController {
         
         User user = (User)request.getSession().getAttribute("user");
         
-//        jobs = jobService.getAllJobOpenings(user.getId());
+        jobs = jobService.getAllJobOpenings(user.getId());
         
-       for (int i = 0; i < 10; i++) {
-            JobOpening job = new JobOpening();
-            job.setId((long)i);
-            job.setJobTitle("c# developer");
-            job.setCompanyName("Microsoft Tech");
-            jobs.add(job);
-        }
-        for (int i = 10; i < 15; i++) {
-            JobOpening job = new JobOpening();
-            job.setId((long)i);
-            job.setJobTitle("java developer");
-            job.setCompanyName("Oracle Tech");
-            jobs.add(job);
-        }
-        for (int i = 15; i < 20; i++) {
-            JobOpening job = new JobOpening();
-            job.setId((long)i);
-            job.setJobTitle("Javascript developer");
-            job.setCompanyName("Google Tech");
-            jobs.add(job);
-        }
-        List<JobOpening> results = jobs;
-        if (filter != null) {
-            results = jobs.stream()
-                    .filter(j -> j.getJobTitle().toUpperCase().contains(filter.toUpperCase()))
-                    .collect(Collectors.toList());
-        }
+        return jobs;
+       
+//        List<JobOpening> results = jobs;
+//        if (filter != null) {
+//            results = jobs.stream()
+//                    .filter(j -> j.getJobTitle().toUpperCase().contains(filter.toUpperCase()))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        results = results.stream()
+//                .skip((itemsPerPage * (pageno - 1)))
+//                .limit(itemsPerPage)
+//                .collect(Collectors.toList());
 
-        results = results.stream()
-                .skip((itemsPerPage * (pageno - 1)))
-                .limit(itemsPerPage)
-                .collect(Collectors.toList());
-
-        return results;
+       // return results;
     }
 
     @RequestMapping(value = "/applyjob/addjob", method = RequestMethod.GET)
@@ -137,8 +118,11 @@ public class ApplyJobController {
     @RequestMapping(value = "/applyjob/addjob", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request) {
-        long userId = (long) request.getSession().getAttribute("userId");
+        //long userId = (long) request.getSession().getAttribute("userId");
+        User u = (User)request.getSession().getAttribute("user");
+        long userId = u.getId();
         if (!result.hasErrors()) {
+           
             jobService.addJobOpening(userId, job);
         }
 

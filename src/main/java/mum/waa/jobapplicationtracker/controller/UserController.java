@@ -69,10 +69,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void doLogin(@RequestBody User user, HttpServletRequest request) {
+    //@ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public String doLogin(User user, HttpServletRequest request, Model model) {
         if (userService.authenticate(user)) {
             request.getSession().setAttribute("user", user);
+            return "redirect:/dashboard";
+        } else {
+            model.addAttribute("error","Invalid Username or Password");
+            return "login";
         }
     }
 

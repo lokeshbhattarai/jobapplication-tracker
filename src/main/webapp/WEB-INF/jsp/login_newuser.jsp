@@ -11,7 +11,7 @@
         <div class="login-panel panel panel-default">
             <div class="panel-heading" id="loginhead">Log in</div>
             <div class="panel-body" id="loginform">
-                <form role="form" method="post" action="<c:url value='/login'></c:url>">
+                <form id="frmUser" role="form" method="post" action="login">
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control" placeholder="Username" name="username" type="text" autofocus="">
