@@ -12,17 +12,72 @@
 <a href="../applyjob" class="btn btn-primary pull-right dashboardbtn">Back to Apply Job</a>
 <div ng-app="jobApp">
     <div ng-controller="jobController" ng-init="init('localhost://')">
-        <form>
-            Job title: <input type="text" ng-model="job.jobTitle" required /><br />
-            Company name: <input type="text" ng-model="job.companyName" required /><br />
-            Company address: <input type="text" ng-model="job.companyAddress" required /><br />
-            Position title: <input type="text" ng-model="job.positionTitle" required /><br />
-            Job description: <input type="text" ng-model="job.jobDescription" required /><br />
-            Apply date: <input type="text" ng-model="jobx.appliedDateTemp" /><br />
-            Contact person: <input type="text" ng-model="job.contactPerson" required /><br />
-            Contact no: <input type="text" ng-model="job.contactNumber" required /><br />
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Job title:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.jobTitle" required />
+                </div>
+            </div>
 
-            <input type="button" ng-click="addJob(job, jobx.appliedDateTemp)" value="Save" />
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Company Name</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.companyName" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Company address:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.companyAddress" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Position title:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.positionTitle" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Job description:</label>
+                <div class="col-lg-10">
+                    <textarea ng-model="job.jobDescription" class="form-control" rows="5"></textarea>
+                    <!--<input type="text" class="form-control"  required />-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Apply date:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.appliedDate" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Contact person:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.contactPerson" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle" class="col-lg-2">Contact no:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="job.contactNumber" required />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" ng-click="addJob(job)">Save</button>
+                </div>
+            </div>
+
+
         </form>
     </div>
 </div>

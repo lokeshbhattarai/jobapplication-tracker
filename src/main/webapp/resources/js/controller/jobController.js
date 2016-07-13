@@ -6,14 +6,14 @@ jobApp.controller('jobController', function($scope, $http){
         $scope.url = url;
     };
     
-    $scope.addJob = function(job, appliedDate){
+    $scope.addJob = function(job){
         var msg = isValid(job);
         if(msg != ''){
             alert(msg);
             return;
         }
                
-        $http.post('addjob/' + appliedDate, angular.toJson(job))
+        $http.post('addjob/', angular.toJson(job))
                .success(function(data){
                     alert('Job saved successfully !!!');
         }).error(function(data){alert(data)});

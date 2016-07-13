@@ -47,7 +47,7 @@ public class JobOpening {
     
     private String jobDescription;
     
-    
+    @Column(name = "applied_date")
     private String appliedDate;
     
     @ElementCollection
