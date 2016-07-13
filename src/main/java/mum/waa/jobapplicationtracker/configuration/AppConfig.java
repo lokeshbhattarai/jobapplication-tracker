@@ -40,9 +40,9 @@ public class AppConfig {
         return messageSource;
     }
     
-//    //file upload
-//    @Bean(name = "multipartResolver")
-//    public StandardServletMultipartResolver resolver() {
-//        return new StandardServletMultipartResolver();
-//    }
+    //file upload
+    @Bean(name = "multipartResolver")
+    public StandardServletMultipartResolver resolver() {
+        return new StandardServletMultipartResolver();
+    }
 }
