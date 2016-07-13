@@ -7,6 +7,7 @@ package mum.waa.jobapplicationtracker.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import mum.waa.jobapplicationtracker.model.JobOpening;
@@ -29,44 +30,69 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class ApplyJobController {
-    
+
     @Autowired
     private IJobOpeningService jobService;
-    
+
     @RequestMapping("/applyjob")
-    public String loadDashboard(){        
+    public String loadDashboard() {
         return "applyjob";
     }
-    
+
     @RequestMapping(value = "/applyjoblist", method = RequestMethod.GET)
-    public String loadAppliedJobListPage(){
+    public String loadAppliedJobListPage() {
         return "appliedjobsearch";
     }
-    
+
     @RequestMapping(value = "/getappliedjoblist/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
-    public @ResponseBody List<JobOpening> getAppliedJobList(@PathVariable int itemsPerPage, @PathVariable int pageno){
+    public @ResponseBody
+    List<JobOpening> getAppliedJobList(String filter, @PathVariable int itemsPerPage, @PathVariable int pageno) {
         List<JobOpening> jobs = new ArrayList<>();
-        for (int i = 0; i < itemsPerPage; i++) {
+        for (int i = 0; i < 10; i++) {
             JobOpening job = new JobOpening();
-            job.setJobTitle("C# developer");
+            job.setJobTitle("c# developer");
             job.setCompanyName("Microsoft Tech");
             jobs.add(job);
         }
-        return jobs;
+        for (int i = 0; i < 5; i++) {
+            JobOpening job = new JobOpening();
+            job.setJobTitle("java developer");
+            job.setCompanyName("Oracle Tech");
+            jobs.add(job);
+        }
+        for (int i = 0; i < 5; i++) {
+            JobOpening job = new JobOpening();
+            job.setJobTitle("Javascript developer");
+            job.setCompanyName("Google Tech");
+            jobs.add(job);
+        }
+        List<JobOpening> results = jobs;
+        if (filter != null) {
+            results = jobs.stream()
+                    .filter(j -> j.getJobTitle().toUpperCase().contains(filter.toUpperCase()))
+                    .collect(Collectors.toList());
+        }
+
+        results = results.stream()
+                .skip((itemsPerPage * (pageno - 1)))
+                .limit(itemsPerPage)
+                .collect(Collectors.toList());
+
+        return results;
     }
 
-    @RequestMapping(value="/applyjob/addjob", method = RequestMethod.GET)
-    public String getNewJobFrom(){        
+    @RequestMapping(value = "/applyjob/addjob", method = RequestMethod.GET)
+    public String getNewJobFrom() {
         return "newjob";
     }
-    
-    @RequestMapping(value="/applyjob/addjob", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/applyjob/addjob", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request){
-        long userId = (long)request.getSession().getAttribute("userId");
-        if(!result.hasErrors()){
+    public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request) {
+        long userId = (long) request.getSession().getAttribute("userId");
+        if (!result.hasErrors()) {
             jobService.addJobOpening(userId, job);
         }
-        
+
     }
 }

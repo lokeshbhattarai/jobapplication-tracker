@@ -18,7 +18,10 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Job Title<br/><input type="text" placeholder="job title"></th>
+                                <th>
+                                    Job Title<br/>
+                                    <input type="text" placeholder="job title" ng-model="jobTitleFilter">
+                                </th>
                                 <th>Company Name</th>
                                 <th>Company Address</th>
                                 <th>Position Title</th>
@@ -29,7 +32,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-show="data.users.length <= 0"><td colspan="5" style="text-align:center;">Loading new data!!</td></tr>
                             <tr dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">
                                 <td>{{user.jobTitle}}</td>
                                 <td>{{user.companyName}}</td>
