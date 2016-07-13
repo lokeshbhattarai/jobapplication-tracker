@@ -271,11 +271,11 @@ a.bg-danger:hover {
 }
 
 .panel-heading {
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: 300;
 	letter-spacing: 0.025em;
-	height: 66px;
-	line-height: 45px;
+	height: 45px;
+	line-height: 20px;
 }
 
 .panel-default .panel-heading {
@@ -724,7 +724,14 @@ h1.page-header {
 .navbar-inverse {
 	background:#036!important;
 }
-
-
-
-
+.box {
+    border-bottom:2px solid #CCC;
+}
+.box h3 {
+    font-size:15px;
+    color:#30a5ff;
+    margin:5px 0px 0px 0px;
+}
+.text-italic {
+    font-style:italic
+}
