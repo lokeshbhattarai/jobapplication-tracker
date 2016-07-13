@@ -51,7 +51,7 @@ public class UserController {
     @Autowired
     private UserExistsValidator userExistsValidator;
     
-    @InitBinder("username")
+    @InitBinder("user")
     protected void initBinderFileBucket(WebDataBinder binder) {
         binder.addValidators(userExistsValidator);
     }

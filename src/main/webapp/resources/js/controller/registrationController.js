@@ -46,9 +46,9 @@ registrationApp.controller('registrationController', function($scope, $http){
         if(user.phone == null || user.phone == '')
             msg += 'Phone cannot be empyt.\n';
         
-        //if(user.password != '' && user.repassword != '' && user.password != user.repassword){
-        //    msg += 'Password and re-password are not same.';
-        //}
+        if(user.password != '' && user.repassword != '' && user.password != user.repassword){
+            msg += 'Password and re-password are not same.';
+        }
         
         return msg;
     };
