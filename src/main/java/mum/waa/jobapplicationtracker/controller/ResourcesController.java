@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import mum.waa.jobapplicationtracker.model.FileUpload;
@@ -40,7 +41,6 @@ public class ResourcesController {
         return "userfaq";
     }
 
-    String saveDirectory = "c:/tmp/";
     @Autowired
     private FileValidator fileValidator;
  
@@ -59,6 +59,7 @@ public class ResourcesController {
 
     @RequestMapping(value = {"/filesupload"}, method = RequestMethod.GET)
     public String getHomePage(ModelMap model) {
+        
         return "filesupload";
     }
 
@@ -78,9 +79,8 @@ public class ResourcesController {
             if (multipartFile != null && !multipartFile.isEmpty()) {
                 try {
                     String fileName = multipartFile.getOriginalFilename();
-                    multipartFile.transferTo(new File(saveDirectory + fileName));
+                    multipartFile.transferTo(new File("\\tmp\\"+fileName));
                     model.addAttribute("fileName", fileName);
-                    System.out.println(System.getProperty("java.io.tmpdir"));
                     return "success";
                 } catch (Exception e) {
                     throw new RuntimeException("File upload exception occurred", e);
@@ -108,7 +108,7 @@ public class ResourcesController {
             System.out.println("Fetching files");
             List<String> fileNames = new ArrayList<String>();
             for (FileUpload bucket : multiFileBucket.getFiles()) {
-                FileCopyUtils.copy(bucket.getFile().getBytes(), new File(bucket.getFile().getOriginalFilename()));
+                FileCopyUtils.copy(bucket.getFile().getBytes(), new File("\\tmp\\"+bucket.getFile().getOriginalFilename()));
                 fileNames.add(bucket.getFile().getOriginalFilename());
             }
 
