@@ -33,34 +33,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 public class ApplyJobController {
-    
-    @Autowired private IJobOpeningService jobOpeningService;
-    
-    class employee{
-        public String name;
-        public String address;
 
-        public String getName() {
-            return name;
-        }
+    class PaginationData<T> {
 
-        public void setName(String name) {
-            this.name = name;
-        }
+        public List<T> data = new ArrayList<>();
+        public int totalCount;
 
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-        
-        public employee(String a, String b){
-            this.name = a;
-            this.address = b;
+        public PaginationData(List<T> list, int count) {
+            this.data = list;
+            this.totalCount = count;
         }
     }
+
+    @Autowired
+    private IJobOpeningService jobOpeningService;
 
     @Autowired
     private IJobOpeningService jobService;
@@ -68,15 +54,6 @@ public class ApplyJobController {
     @RequestMapping("/applyjob")
     public String loadDashboard() {
         return "applyjob";
-    }
-    
-    @RequestMapping(value = "/getemp/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
-    public @ResponseBody List<employee> getemplo(@PathVariable int itemsPerPage, @PathVariable int pageno){
-        List<employee> list = new ArrayList<>();
-        list.add(new employee("aa", "bb"));
-        list.add(new employee("a1", "b1"));
-        list.add(new employee("a2", "b2"));
-        return list;
     }
 
     @RequestMapping(value = "/applyjoblist", method = RequestMethod.GET)
@@ -86,42 +63,39 @@ public class ApplyJobController {
 
     @RequestMapping(value = "/getappliedjoblist/{itemsPerPage}/{pageno}", method = RequestMethod.GET)
     public @ResponseBody
-    List<JobOpening> getAppliedJobList(String filter, @PathVariable int itemsPerPage, @PathVariable int pageno,HttpServletRequest request) {
+    PaginationData<JobOpening> getAppliedJobList(String filter, @PathVariable int itemsPerPage, @PathVariable int pageno, HttpServletRequest request) {
         List<JobOpening> jobs = new ArrayList<>();
-        
-        User user = (User)request.getSession().getAttribute("user");
-        
-        jobs = jobService.getAllJobOpenings(user.getId());
-        
-        
-//        for(int i=0;i<5;i++){
-//            JobOpening job = new JobOpening();
-//            job.setId((long)i);
-//            job.setJobTitle("Job title");
-//            job.setContactPerson("Contact person");
-//            job.setContactNumber("6414512121");
-//            job.setJobDescription("Description");
-//            job.setCompanyName("Company name");
-//            job.setEndDate("2017-12-10");
-//            jobs.add(job);
-//        }
-//        
-        
-        return jobs;
-       
-//        List<JobOpening> results = jobs;
-//        if (filter != null) {
-//            results = jobs.stream()
-//                    .filter(j -> j.getJobTitle().toUpperCase().contains(filter.toUpperCase()))
-//                    .collect(Collectors.toList());
-//        }
-//
-//        results = results.stream()
-//                .skip((itemsPerPage * (pageno - 1)))
-//                .limit(itemsPerPage)
-//                .collect(Collectors.toList());
 
-       // return results;
+        User user = (User) request.getSession().getAttribute("user");
+        jobs = jobService.getAllJobOpenings(user.getId());
+
+        List<JobOpening> temp = new ArrayList<>();
+        for (JobOpening jobOpening : jobs) {
+            JobOpening j = new JobOpening();
+            j.setJobTitle(jobOpening.getJobTitle());
+            j.setCompanyName(jobOpening.getCompanyName());
+            j.setJobDescription(jobOpening.getJobDescription());
+            j.setContactNumber(jobOpening.getContactNumber());
+            j.setContactPerson(jobOpening.getContactPerson());
+            j.setEndDate(jobOpening.getEndDate());
+            j.setId(jobOpening.getId());
+            temp.add(j);
+        }
+
+        if (filter != null) {
+            temp = temp.stream()
+                    .filter(job -> job.getJobTitle().toUpperCase().contains(filter.toUpperCase()))
+                    .collect(Collectors.toList());
+        };
+        
+        int totalRecords = temp.size();
+
+        temp = temp.stream()
+                .skip((itemsPerPage * (pageno - 1)))
+                .limit(itemsPerPage)
+                .collect(Collectors.toList());
+
+        return new PaginationData<JobOpening>(temp, totalRecords);
     }
 
     @RequestMapping(value = "/applyjob/addjob", method = RequestMethod.GET)
@@ -133,18 +107,18 @@ public class ApplyJobController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void addJobRest(@RequestBody @Valid JobOpening job, BindingResult result, HttpServletRequest request) {
         //long userId = (long) request.getSession().getAttribute("userId");
-        User u = (User)request.getSession().getAttribute("user");
+        User u = (User) request.getSession().getAttribute("user");
         long userId = u.getId();
         if (!result.hasErrors()) {
-           
+
             jobService.addJobOpening(userId, job);
         }
 
     }
-    
+
     @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.GET)
     public String getAddLogPage(@RequestParam("jobId") String jobId, Model model) {
-        
+
         JobLog jobLog = new JobLog();
         jobLog.setJobOpening(jobOpeningService.getById(Long.valueOf(jobId)));
         model.addAttribute("jobLog", jobLog);
@@ -152,17 +126,17 @@ public class ApplyJobController {
     }
 
     @RequestMapping(value = "/applyjob/addlog", method = RequestMethod.POST)
-    public String addJobLog(JobLog jobLog,HttpServletRequest request) {
-        
+    public String addJobLog(JobLog jobLog, HttpServletRequest request) {
+
         User user = (User) request.getSession().getAttribute("user");
-        
+
         jobOpeningService.addJobLog(user.getId(), jobLog);
-        return "applyjob";
+        return "redirect:/applyjob";
     }
-    
+
     @RequestMapping(value = "/applyjob/viewJobDetails", method = RequestMethod.GET)
     public String getJobOpeningDetailPage(@RequestParam("jobId") String jobId, Model model) {
-        
+
 //            JobOpening job = new JobOpening();
 //            job.setId((long)01);
 //            job.setJobTitle("Job title");
@@ -171,10 +145,9 @@ public class ApplyJobController {
 //            job.setJobDescription("Description");
 //            job.setCompanyName("Company name");
 //            job.setEndDate("2017-12-10");
-            
 //          model.addAttribute("job", job);  
         model.addAttribute("job", jobOpeningService.getById(Long.valueOf(jobId)));
         return "appliedJobDetails";
     }
-    
+
 }

@@ -11,26 +11,45 @@
 <a href="jobscheduling" class="btn btn-primary pull-right dashboardbtn">Back to Job Schedule</a>
 
 <div>
-    <form:form modelAttribute="newJobSchedule" enctype="multipart/form-data" class="form-horizontal">
+    <form:form modelAttribute="newJobSchedule"  class="form-horizontal">
         <fieldset>
+
             <legend>Add new job schedule</legend>
-            <form:select path="selectedJobCategory">
-                <form:option value="NONE" label="--- Select ---"/>
-                <form:options items="${jobList}" />
-            </form:select>
-            <div class="col-lg-10">
-                Event Date: <form:input id="eventDate" path="eventDate" type="text" class="form:input-large"/>
-                <form:errors path="eventDate" cssClass="text-danger"/>
+            <div class="form-group">
+                <label class="col-lg-2">Job Apply</label>
+                <div class="col-lg-8">
+                    <form:select path="selectedJobCategory" cssClass="form-control">
+                        <form:option value="NONE" label="--- Select ---"/>
+                        <form:options items="${jobList}" itemLabel="jobTitle" itemValue="id" />
+                    </form:select>
+                    
+                </div>
             </div>
-            <div class="col-lg-10">
-                Remind Me Before: <form:input id="remindDayBefore" path="remindDayBefore" type="text" class="form:input-large"/>
-                <form:errors path="remindDayBefore" cssClass="text-danger"/>
+            <div class="form-group">
+                <label class="col-lg-2">Event Date:</label>
+                <div class="col-lg-8">
+                    <form:input id="eventDate" path="eventDate" type="text" cssClass="form-control"/>
+                    <form:errors path="eventDate" cssClass="text-danger"/>
+                </div>
             </div>
-            <div class="col-lg-10">
-                Comment: <form:textarea id="comment" path="comment" rows="2"/>
+            <div class="form-group">
+                <label class="col-lg-2">Remind Me Before:</label>
+                <div class="col-lg-8">
+                    <form:input id="remindDayBefore" path="remindDayBefore" type="text" cssClass="form-control"/>
+                    <form:errors path="remindDayBefore" cssClass="text-danger"/>
+                </div>
             </div>
-            <div class="col-lg-10">
-                Remind Me <form:checkbox  id="remindMe" path="remindMe"/>
+            <div class="form-group">
+                <label class="col-lg-2">Comment: </label>
+                <div class="col-lg-8">
+                    <form:textarea id="comment" path="comment" rows="2" cssClass="form-control"/>
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label class="col-lg-2">&nbsp;</label>
+                <div class="col-lg-8">
+                    Remind Me <form:checkbox  id="remindMe" path="remindMe"/>
+                </div>
             </div>
             <div class="col-lg-offset-2 col-lg-10">
                 <input type="submit" id="btnAdd" class="btn btn-primary" value ="Save Job Schedule"/>
