@@ -11,7 +11,8 @@
         <div class="login-panel panel panel-default">
             <div class="panel-heading" id="loginhead">Log in</div>
             <div class="panel-body" id="loginform">
-                <form id="frmUser" role="form" method="post" action="login">
+               
+                <form id="frmUser" role="form" method="post" action="<c:url value='/login'></c:url>">
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control" placeholder="Username" name="username" type="text" autofocus="">
@@ -27,6 +28,8 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                         <a href="#" id="forgotpwd" class="btn btn-primary pull-right">Forgot Password</a>
                     </fieldset>
+                    <br>
+                     <div class="alert-danger">${error}</div>
                 </form>
             </div>
 
