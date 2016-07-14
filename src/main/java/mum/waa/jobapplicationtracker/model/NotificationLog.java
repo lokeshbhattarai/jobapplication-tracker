@@ -39,10 +39,10 @@ public class NotificationLog {
 //    @JoinColumn(name="job_opening_id")
 //    private JobOpening jobOpening;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "send_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate sendDate;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String sendDate;
     
     private boolean isRead;
     
@@ -75,11 +75,11 @@ public class NotificationLog {
 //        this.jobOpening = jobOpening;
 //    }
 
-    public LocalDate getSendDate() {
+    public String getSendDate() {
         return sendDate;
     }
 
-    public void setSendDate(LocalDate sendDate) {
+    public void setSendDate(String sendDate) {
         this.sendDate = sendDate;
     }
 

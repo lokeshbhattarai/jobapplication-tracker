@@ -6,7 +6,7 @@
 package mum.waa.jobapplicationtracker.configuration;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -32,10 +32,10 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     //file upload
     @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
-        registration.setMultipartConfig(getMultipartConfigElement());
+    protected void customizeRegistration(Dynamic registration) {
+        registration.setMultipartConfig( new MultipartConfigElement("C:/tmp",2097152, 4194304, 0));
     }
-
+/*
     private MultipartConfigElement getMultipartConfigElement() {
         MultipartConfigElement multipartConfigElement = new MultipartConfigElement(LOCATION, MAX_FILE_SIZE, MAX_REQUEST_SIZE, FILE_SIZE_THRESHOLD);
         return multipartConfigElement;
@@ -46,4 +46,5 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     // Beyond that size spring will throw exception.
     private static final long MAX_REQUEST_SIZE = 20971520; // 20MB : Total request size containing Multi part.
     private static final int FILE_SIZE_THRESHOLD = 0; // Size threshold after which files will be written to disk
+*/
 }

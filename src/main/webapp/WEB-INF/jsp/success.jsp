@@ -16,8 +16,6 @@
 <body>
     <div class="success">
         File  <strong>${fileName}</strong> uploaded successfully.
-        <br/><br/>
-        <a href="<c:url value='/welcome' />">Home</a> 
     </div>
 </body>
 </html>

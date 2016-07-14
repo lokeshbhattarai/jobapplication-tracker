@@ -73,15 +73,15 @@ public class User implements Serializable{
     @Column(name="is_active")
     private boolean isActive;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name="created_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate createdDate;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String createdDate;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "last_login_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate lastLogin;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String lastLogin;
     
     @Column(name="api_token")
     private String apiToken;
@@ -195,19 +195,19 @@ public class User implements Serializable{
         this.isActive = isActive;
     }
 
-    public LocalDate getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
-    public LocalDate getLastLogin() {
+    public String getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(LocalDate lastLogin) {
+    public void setLastLogin(String lastLogin) {
         this.lastLogin = lastLogin;
     }
 

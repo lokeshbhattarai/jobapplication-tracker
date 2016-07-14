@@ -11,17 +11,17 @@
 <h1 class="page-header"><i class="fa fa-cubes" aria-hidden="true"></i> Apply Job</h1>
 <a href="applyjob/addjob" class="btn btn-primary pull-right dashboardbtn">New Job Record</a>
 <div class="row">
-    <div role="main" class="container theme-showcase" ng-app="angularTable" >
+    <div role="main" class="theme-showcase" ng-app="angularTable" >
         <div>
             <div class="col-lg-12">
-                <div class="page-header">
-                    <h2 id="tables">Job openings you have applied for</h2>
+                <div class="page-header" style="margin-bottom:5px;">
+                    <h3>Job openings you have applied for</h3>
                 </div>
                 <div class="bs-component" ng-init="init('getappliedjoblist')" ng-controller="listdata as data">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Job title</th>
+                                <th>Job title<br/><input type='text' placeholder="Filter" class="form-control small" style="width:200px" ng-model="jobTitleFilter"></th>
                                 <th>Company name</th>
                                 <th>Description</th>
                                 <th>Contact number</th>
@@ -31,7 +31,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-show="data.users.length <= 0"><td colspan="5" style="text-align:center;">Loading new data!!</td></tr>
                             <tr dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">
                                 <td>{{user.jobTitle}}</td>
                                 <td>{{user.companyName}}</td>

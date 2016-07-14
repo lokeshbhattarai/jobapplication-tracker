@@ -27,30 +27,14 @@
             Apply Jobs
         </div>
         <div class="panel-body">
+            <c:forEach items="${applyjobs}" var="job" begin="1" end="5">
             <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
+                <h3><a href="<c:url value='/applyjob/viewJobDetails?jobId=${job.id}'></c:url>">${job.companyName}</a></h3>
+                <span class="text-italic">${job.jobTitle}</span> <br> 
+                <span class="text-date">${job.appliedDate}</span> 
             </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
+            </c:forEach>
+           
 
         </div>
     </div>
