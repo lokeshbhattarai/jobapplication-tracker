@@ -27,7 +27,7 @@
             Apply Jobs
         </div>
         <div class="panel-body">
-            <c:forEach items="${applyjobs}" var="job" begin="1" end="5">
+            <c:forEach items="${applyjobs}" var="job" begin="0" end="5">
             <div class="box">
                 <h3><a href="<c:url value='/applyjob/viewJobDetails?jobId=${job.id}'></c:url>">${job.companyName}</a></h3>
                 <span class="text-italic">${job.jobTitle}</span> <br> 
@@ -44,33 +44,17 @@
 <div class="col-md-4">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Apply Jobs
+            Latest Events
         </div>
         <div class="panel-body">
+             <c:forEach items="${latestEvents}" var="event" begin="0" end="5">
             <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
+                <h3>${event.eventName}</h3>
+                
+                <span class="text-date">${event.eventDate}</span> 
             </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
+             </c:forEach> 
+            
 
         </div>
     </div>
@@ -81,45 +65,39 @@
 <div class="col-md-4">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Apply Jobs
+            Bookmark
         </div>
         <div class="panel-body">
             <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
+                <h3>Monster.com</h3>
+                <span class="text-italic">U.S. and international</span> <br> 
+                
             </div>
 
             <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
+                <h3>Oodle</h3>
+                <span class="text-italic">U.S.</span> <br> 
+                
             </div>
 
             <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
-            </div>
-
-            <div class="box">
-                <h3>Microsoft</h3>
-                <span class="text-italic">Sr. Software Developer</span> <br> 
-                <span class="text-date">Jan 20 2016</span> 
+                <h3>Proven</h3>
+                <span class="text-italic">U.S.</span> <br> 
+                
             </div>
 
 
         </div>
     </div>
 </div> <!-- panel -->
-
+<div class="row">
 <div class="col-lg-8">
     <h3>Upcoming Events Calendar</h3>
     
 
 	<div id='calendar'></div>
 </div>
-
+</div>
 
 
 </div> <!-- row -->
