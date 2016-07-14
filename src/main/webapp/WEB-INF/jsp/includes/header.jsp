@@ -49,9 +49,9 @@
                                     %> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"> <i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                                <li><a href="#"> <i class="fa fa-puzzle-piece" aria-hidden="true"></i> Settings</a></li>
-                                <li><a href="#"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                                <li><a href="<c:url value='/userprofile'></c:url>"> <i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                                <li><a href="<c:url value='/settings'></c:url>"> <i class="fa fa-puzzle-piece" aria-hidden="true"></i> Settings</a></li>
+                                <li><a href="<c:url value='/logout'></c:url>"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
                             </ul>
                         </li>
 
@@ -68,18 +68,18 @@
                 </div>
             </form>
             <ul class="nav menu">
-                <li><a href="dashboard"> <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
-                <li><a href="applyjob"><i class="fa fa-cubes" aria-hidden="true"></i> Apply Job Records</a></li>
-                <li><a href="jobscheduling"><i class="fa fa-calendar" aria-hidden="true"></i> Job Scheduling</a></li>
-                <li><a href="userfaq"> <i class="fa fa-cogs" aria-hidden="true"></i> Resources (FAQ's)</a></li>
-                <li><a href="userprofile"> <i class="fa fa-user" aria-hidden="true"></i> User Profile</a></li>
-                <li><a href="changepassword"> <i class="fa fa-lock" aria-hidden="true"></i> Change Password</a></li>
-                <li><a href="settings"> <i class="fa fa-puzzle-piece" aria-hidden="true"></i> Settings</a></li>			
+                <li><a href="<c:url value='/dashboard'></c:url>"> <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="<c:url value='/applyjob'></c:url>"><i class="fa fa-cubes" aria-hidden="true"></i> Apply Job Records</a></li>
+                <li><a href="<c:url value='/jobscheduling'></c:url>"><i class="fa fa-calendar" aria-hidden="true"></i> Job Scheduling</a></li>
+                <li><a href="<c:url value='/userfaq'></c:url>"> <i class="fa fa-cogs" aria-hidden="true"></i> Resources (FAQ's)</a></li>
+                <li><a href="<c:url value='/userprofile'></c:url>"> <i class="fa fa-user" aria-hidden="true"></i> User Profile</a></li>
+                <li><a href="<c:url value='/changepassword'></c:url>"> <i class="fa fa-lock" aria-hidden="true"></i> Change Password</a></li>
+                <li><a href="<c:url value='/settings'></c:url>"> <i class="fa fa-puzzle-piece" aria-hidden="true"></i> Settings</a></li>			
                 <li role="presentation" class="divider"></li>
-                <li><a href="logout"> <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
-                <li><a href="help"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
-                <li><a href="aboutus"><i class="fa fa-users" aria-hidden="true"></i> About Us</a></li>
-                <li><a href="tutorials"><i class="fa fa-video-camera" aria-hidden="true"></i> Video Tutorials</a></li>
+                <li><a href="<c:url value='/logout'></c:url>"> <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
+                <li><a href="<c:url value='/help'></c:url>"> <i class="fa fa-info" aria-hidden="true"></i> Help</a></li>
+                <li><a href="<c:url value='/aboutus'></c:url>"><i class="fa fa-users" aria-hidden="true"></i> About Us</a></li>
+                <li><a href="<c:url value='/tutorials'></c:url>"><i class="fa fa-video-camera" aria-hidden="true"></i> Video Tutorials</a></li>
 
             </ul>
 
@@ -89,7 +89,7 @@
             <div class="row">
                 <ol class="breadcrumb">
 
-                    <li class="active">Dashboard   </li>
+                    <li class="active">&nbsp;   </li>
                 </ol>
             </div><!--/.row-->
 

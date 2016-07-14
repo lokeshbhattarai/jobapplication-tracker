@@ -64,7 +64,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
-        model.addAttribute("newUser", new User());
+//        model.addAttribute("newUser", new User());
         return "login_newuser";
     }
 
@@ -76,7 +76,7 @@ public class UserController {
             return "redirect:/dashboard";
         } else {
             model.addAttribute("error","Invalid Username or Password");
-            return "login";
+            return "login_newuser";
         }
     }
 
@@ -111,7 +111,9 @@ public class UserController {
     }
 
     @RequestMapping("/logout")
-    public String loadLogout() {
-        return "logout";
+    public String loadLogout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        
+        return "redirect:/login";
     }
 }
