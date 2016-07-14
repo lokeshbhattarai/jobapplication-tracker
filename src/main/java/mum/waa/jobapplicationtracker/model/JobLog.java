@@ -33,9 +33,9 @@ public class JobLog {
     private Long id;
     
     @Column(name="created_date")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate createdDate;
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String createdDate;
     
     private String title;
     
@@ -60,11 +60,11 @@ public class JobLog {
         this.id = id;
     }
 
-    public LocalDate getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
