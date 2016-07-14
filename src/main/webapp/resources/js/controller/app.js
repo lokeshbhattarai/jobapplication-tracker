@@ -19,7 +19,7 @@ app.controller('listdata', function ($scope, $http) {
     vm.users = []; //declare an empty array
     vm.pageno = 1; // initialize page no to 1
     vm.total_count = 0;
-    vm.itemsPerPage = 5; //this could be a dynamic value from a drop down
+    vm.itemsPerPage = 3; //this could be a dynamic value from a drop down
 
     vm.getData = function (pageno) { // This would fetch the data on page change.
         //In practice this should be in a factory.
@@ -27,8 +27,8 @@ app.controller('listdata', function ($scope, $http) {
         var url = vm.url + "/" + vm.itemsPerPage + "/" + pageno;
         $http({url: url, method: "GET", params: {filter: $scope.jobTitleFilter}
         }).success(function (response) {
-            vm.users = response; //ajax request to fetch data into vm.data
-            vm.total_count = 50; //response.total_count;
+            vm.users = response.data; //ajax request to fetch data into vm.data
+            vm.total_count = response.totalCount;
         });
     };
 });

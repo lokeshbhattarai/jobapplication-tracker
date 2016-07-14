@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import mum.waa.jobapplicationtracker.model.JobEvent;
+import mum.waa.jobapplicationtracker.model.JobOpening;
 import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.service.IJobEventService;
+import mum.waa.jobapplicationtracker.service.IJobOpeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,10 @@ public class JobSchedulingController {
     @Autowired
     private IJobEventService jobEventService;
     
+    @Autowired
+    private IJobOpeningService jobOpeningService;
+    
+    
     @RequestMapping(value="/jobscheduling", method=RequestMethod.GET)
     public String loadJobScheduling(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
@@ -38,12 +44,15 @@ public class JobSchedulingController {
     }
 
     @RequestMapping(value = "/newjobschedule", method = RequestMethod.GET)
-    public String newJobScheduleForm(Model model) {
+    public String newJobScheduleForm(Model model, HttpServletRequest request) {
         JobEvent jobEvent = new JobEvent();
-        List<String> jobList = new ArrayList<>();
-        jobList.add("dot net");
-        jobList.add("java");
-        jobList.add("php");
+        User u = (User)request.getSession().getAttribute("user");
+        List<JobOpening> jobList = jobOpeningService.getAllJobOpenings(u.getId());
+        
+//        List<String> jobList = new ArrayList<>();
+//        jobList.add("dot net");
+//        jobList.add("java");
+//        jobList.add("php");
         model.addAttribute("newJobSchedule", jobEvent);
         model.addAttribute("jobList", jobList);
         return "newjobschedule";
@@ -53,9 +62,9 @@ public class JobSchedulingController {
     public String addJobSchedule(@ModelAttribute("newJobSchedule") JobEvent jobEvent, HttpServletRequest request) {
         User user = (User)request.getSession().getAttribute("user");
         long userId = user.getId();
-        String str = jobEvent.getSelectedJobCategory();
+        long str = Long.parseLong(jobEvent.getSelectedJobCategory());
         
-        jobEventService.addJobEvent(userId, 1, jobEvent);
+        jobEventService.addJobEvent(userId, str, jobEvent);
         return "redirect:/jobscheduling";
     }
 }
