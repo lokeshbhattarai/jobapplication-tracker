@@ -12,8 +12,8 @@
 <a href="applyjob/addjob" class="btn btn-primary pull-right dashboardbtn">New Job Record</a>
 <div class="row">
     <div role="main" class="container theme-showcase" ng-app="angularTable" >
-        <div class="" style="margin-top:90px;">
-            <div class="col-lg-8">
+        <div>
+            <div class="col-lg-12">
                 <div class="page-header">
                     <h2 id="tables">Job openings you have applied for</h2>
                 </div>
@@ -21,17 +21,27 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>Job title</th>
                                 <th>Company name</th>
                                 <th>Description</th>
+                                <th>Contact number</th>
+                                <th>Contact person</th>
+                                <th>End date</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-show="data.users.length <= 0"><td colspan="5" style="text-align:center;">Loading new data!!</td></tr>
                             <tr dir-paginate="user in data.users|itemsPerPage:data.itemsPerPage" total-items="data.total_count">
+                                <td>{{user.jobTitle}}</td>
                                 <td>{{user.companyName}}</td>
                                 <td>{{user.jobDescription}}</td>
+                                <td>{{user.contactNumber}}</td>
+                                <td>{{user.contactPerson}}</td>
+                                <td>{{user.endDate}}</td>
+                                
                                 <td><a href="applyjob/addlog?jobId={{user.id}}">Add Log</a></td>
+                                <td><a href="applyjob/viewJobDetails?jobId={{user.id}}">View details</a></td>
                             </tr>
                         </tbody>
                     </table> 

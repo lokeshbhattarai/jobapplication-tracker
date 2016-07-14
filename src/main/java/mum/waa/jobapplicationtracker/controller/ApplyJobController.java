@@ -91,7 +91,21 @@ public class ApplyJobController {
         
         User user = (User)request.getSession().getAttribute("user");
         
-        jobs = jobService.getAllJobOpenings(user.getId());
+//        jobs = jobService.getAllJobOpenings(user.getId());
+        
+        
+        for(int i=0;i<5;i++){
+            JobOpening job = new JobOpening();
+            job.setId((long)i);
+            job.setJobTitle("Job title");
+            job.setContactPerson("Contact person");
+            job.setContactNumber("6414512121");
+            job.setJobDescription("Description");
+            job.setCompanyName("Company name");
+            job.setEndDate("2017-12-10");
+            jobs.add(job);
+        }
+        
         
         return jobs;
        
@@ -146,6 +160,16 @@ public class ApplyJobController {
         User user = (User) request.getSession().getAttribute("user");
         
         jobOpeningService.addJobLog(0, jobLog);
+        return "applyjob";
+    }
+    
+    @RequestMapping(value = "/applyjob/viewJobDetails", method = RequestMethod.GET)
+    public String getJobOpeningDetailPage(@RequestParam("jobId") String jobId, Model model) {
+        
+//        JobLog jobLog = new JobLog();
+//        jobLog.setJobOpening(jobOpeningService.getById(Long.valueOf(jobId)));
+        model.addAttribute("job", jobOpeningService.getById(Long.valueOf(jobId)));
         return "dummy";
     }
+    
 }
