@@ -12,6 +12,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -67,10 +68,10 @@ public class JobOpening {
     
     private String contactNumber;
     
-    @OneToMany(mappedBy = "jobOpening")
+    @OneToMany(mappedBy = "jobOpening", fetch = FetchType.EAGER)
     private List<JobLog> logs= new ArrayList<>();
     
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name = "user_id")// creates a column in JobOpening table with a foreign key "user_id" referencing to userId
     private User user;
     

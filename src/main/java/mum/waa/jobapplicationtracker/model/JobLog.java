@@ -8,6 +8,7 @@ package mum.waa.jobapplicationtracker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,11 +42,11 @@ public class JobLog {
     
     private String comment;
     
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name = "job_opening_id")
     private JobOpening jobOpening;
     
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name="user_id")
     private User user;
 
