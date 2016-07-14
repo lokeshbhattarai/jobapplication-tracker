@@ -12,6 +12,7 @@ import mum.waa.jobapplicationtracker.persistance.IJobLogDao;
 import mum.waa.jobapplicationtracker.persistance.IJobOpeningDao;
 import mum.waa.jobapplicationtracker.service.IJobOpeningService;
 import mum.waa.jobapplicationtracker.service.IuserService;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,7 @@ public class JobOpeningService implements IJobOpeningService{
     public void addJobLog(long jobOpeningId, JobLog jobLog) {
         
         jobLog.setJobOpening(getById(jobOpeningId));
-        jobLog.setCreatedDate(LocalDateTime.now());
+        jobLog.setCreatedDate(LocalDate.now());
         jobLogDao.addJobLog(jobLog);
     }
 
