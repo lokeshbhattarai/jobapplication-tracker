@@ -7,6 +7,7 @@ package mum.waa.jobapplicationtracker.persistance.impl;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobLog;
+import mum.waa.jobapplicationtracker.model.JobOpening;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.IJobLogDao;
 import org.hibernate.Criteria;
@@ -26,9 +27,9 @@ public class JobLogDao extends AbstractDao<Long, JobLog> implements IJobLogDao{
     }
 
     @Override
-    public List<JobLog> getJobLogs(long jobOpeningId) {
+    public List<JobLog> getJobLogs(JobOpening jobOpening) {
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("job_opening_id", jobOpeningId));
+        criteria.add(Restrictions.eq("jobOpening", jobOpening));
         return (List<JobLog>) criteria.list();
     }
     

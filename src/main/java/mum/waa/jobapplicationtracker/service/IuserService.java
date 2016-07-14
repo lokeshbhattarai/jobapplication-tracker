@@ -20,5 +20,7 @@ public interface IuserService {
    User getById(long userId);
    
    User getByUsername(String username);
+   
+   void updateUser(User user);
     
 }

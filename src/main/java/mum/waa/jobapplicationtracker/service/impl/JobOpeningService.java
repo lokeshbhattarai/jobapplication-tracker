@@ -45,7 +45,7 @@ public class JobOpeningService implements IJobOpeningService{
 
     @Override
     public List<JobOpening> getAllJobOpenings(long userId) {
-        return jobOpeningDao.getAllJobOpenings(userId);
+        return jobOpeningDao.getAllJobOpenings(userService.getById(userId));
     }
     
     @Override
@@ -55,7 +55,7 @@ public class JobOpeningService implements IJobOpeningService{
     
     @Override
     public List<JobLog> getJobLogs(long jobOpeningId) {
-        return jobLogDao.getJobLogs(jobOpeningId);
+        return jobLogDao.getJobLogs(getById(jobOpeningId));
     }
 
 

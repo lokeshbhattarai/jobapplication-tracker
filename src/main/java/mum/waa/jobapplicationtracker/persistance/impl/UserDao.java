@@ -44,5 +44,18 @@ public class UserDao extends AbstractDao<Integer, User> implements IuserDao{
         criteria.add(Restrictions.eq(columnName, criteriaValue));
         return (User) criteria.uniqueResult();
     }
+
+    @Override
+    public void updateUser(User user) {
+        
+        Query query = getSession().createSQLQuery("update users set firstname=:firstName,lastName=:lastName, email=:email, phone=:phone where id=:ID");
+        query.setString("fistName", user.getFirstName());
+        query.setString("lastName", user.getLastName());
+        query.setString("email", user.getEmail());
+        query.setString("phone", user.getPhone());
+        query.setString("ID", String.valueOf(user.getId()));
+        query.executeUpdate();
+        
+    }
     
 }

@@ -156,21 +156,21 @@ public class ApplyJobController {
         
         User user = (User) request.getSession().getAttribute("user");
         
-        jobOpeningService.addJobLog(0, jobLog);
+        jobOpeningService.addJobLog(user.getId(), jobLog);
         return "applyjob";
     }
     
     @RequestMapping(value = "/applyjob/viewJobDetails", method = RequestMethod.GET)
     public String getJobOpeningDetailPage(@RequestParam("jobId") String jobId, Model model) {
         
-            JobOpening job = new JobOpening();
-            job.setId((long)01);
-            job.setJobTitle("Job title");
-            job.setContactPerson("Contact person");
-            job.setContactNumber("6414512121");
-            job.setJobDescription("Description");
-            job.setCompanyName("Company name");
-            job.setEndDate("2017-12-10");
+//            JobOpening job = new JobOpening();
+//            job.setId((long)01);
+//            job.setJobTitle("Job title");
+//            job.setContactPerson("Contact person");
+//            job.setContactNumber("6414512121");
+//            job.setJobDescription("Description");
+//            job.setCompanyName("Company name");
+//            job.setEndDate("2017-12-10");
             
 //          model.addAttribute("job", job);  
         model.addAttribute("job", jobOpeningService.getById(Long.valueOf(jobId)));

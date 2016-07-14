@@ -7,6 +7,7 @@ package mum.waa.jobapplicationtracker.persistance;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobOpening;
+import mum.waa.jobapplicationtracker.model.User;
 
 /**
  *
@@ -15,7 +16,7 @@ import mum.waa.jobapplicationtracker.model.JobOpening;
 public interface IJobOpeningDao {
     void addJobOpening(JobOpening jobOpening);
     
-    List<JobOpening> getAllJobOpenings(long userId);
+    List<JobOpening> getAllJobOpenings(User user);
     
 //    List<JobLog> getJobLogs(long jobOpeningId);
 //    

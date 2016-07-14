@@ -67,5 +67,10 @@ public class UserService implements IuserService{
     public boolean validateRetypePassword(User user) {
         return user.getPassword().equals(user.getRepassword());
     }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
     
 }

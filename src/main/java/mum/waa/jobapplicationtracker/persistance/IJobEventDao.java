@@ -7,6 +7,8 @@ package mum.waa.jobapplicationtracker.persistance;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobEvent;
+import mum.waa.jobapplicationtracker.model.JobOpening;
+import mum.waa.jobapplicationtracker.model.User;
 
 /**
  *
@@ -15,6 +17,6 @@ import mum.waa.jobapplicationtracker.model.JobEvent;
 public interface IJobEventDao {
     JobEvent getById(long Id);
     void addJobEvent(JobEvent jobEvent);
-    List<JobEvent> getAllJobEvents(long userId);
-    List<JobEvent> getJobEventsByJob(long userId,long jobOpeningId);
+    List<JobEvent> getAllJobEvents(User user);
+    List<JobEvent> getJobEventsByJob(User user,JobOpening jobOpening);
 }

@@ -32,27 +32,12 @@ public class JobOpeningDao extends AbstractDao<Long, JobOpening> implements IJob
     }
 
     @Override
-    public List<JobOpening> getAllJobOpenings(long userId) {
-//        try {
-        //String sql = "FROM job_openings where user_id = '3'";
+    public List<JobOpening> getAllJobOpenings(User user) {
         
-        User user = new User();
-        user.setId((long)3);
           Criteria criteria = createEntityCriteria();
           criteria.add(Restrictions.eq("user", user));
         return (List<JobOpening>) criteria.list();
         
-        
-//        Session s = this.getSession();
-//        Query query = s.createQuery("from job_openings where user_id = '3' ");
-//        List list = query.list();
-//        return list;
-//        
-//      
-//        }catch(Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//       return null;
     }
 
     @Override

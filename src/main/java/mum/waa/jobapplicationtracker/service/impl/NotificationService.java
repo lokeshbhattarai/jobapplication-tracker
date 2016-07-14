@@ -27,7 +27,7 @@ public class NotificationService implements INotificationService{
     
     @Override
     public List<NotificationLog> getNotificationLogs(long userId) {
-        return notificationLogDao.getAllNotifications(userId);
+        return notificationLogDao.getAllNotifications(userService.getById(userId));
     }
 
     @Override
@@ -45,6 +45,12 @@ public class NotificationService implements INotificationService{
     @Override
     public void markNotificationAsRead(long notificationId,boolean isRead) {
         notificationLogDao.updateNotificationAsRead(notificationId,isRead);
+    }
+
+    @Override
+    public List<NotificationLog> getUnreadNotifications(long userId) {
+        return notificationLogDao.getUnreadNotifications(userService.getById(userId));
+        
     }
     
 }

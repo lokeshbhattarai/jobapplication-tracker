@@ -15,4 +15,6 @@ public interface IuserDao {
     void saveUser(User user);
     User getUser(long userId);
     User getByUserName(String username);
+
+    void updateUser(User user);
 }

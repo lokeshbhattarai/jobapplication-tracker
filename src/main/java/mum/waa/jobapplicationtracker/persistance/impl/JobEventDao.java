@@ -8,6 +8,7 @@ package mum.waa.jobapplicationtracker.persistance.impl;
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobEvent;
 import mum.waa.jobapplicationtracker.model.JobOpening;
+import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.IJobEventDao;
 import mum.waa.jobapplicationtracker.service.IJobEventService;
@@ -23,17 +24,17 @@ import org.springframework.stereotype.Repository;
 public class JobEventDao extends AbstractDao<Long, JobEvent> implements IJobEventDao{
 
     @Override
-    public List<JobEvent> getAllJobEvents(long userId) {
+    public List<JobEvent> getAllJobEvents(User user) {
          Criteria criteria = createEntityCriteria();
-         criteria.add(Restrictions.eq("user_id", userId));
+         criteria.add(Restrictions.eq("user", user));
          return (List<JobEvent>) criteria.list();
     }
 
     @Override
-    public List<JobEvent> getJobEventsByJob(long userId, long jobOpeningId) {
+    public List<JobEvent> getJobEventsByJob(User user, JobOpening jobOpening) {
          Criteria criteria = createEntityCriteria();
-         criteria.add(Restrictions.eq("user_id", userId));
-         criteria.add(Restrictions.eq("job_opening_id", jobOpeningId));
+         criteria.add(Restrictions.eq("user", user));
+         criteria.add(Restrictions.eq("jobOpening", jobOpening));
          return (List<JobEvent>) criteria.list();
 
     }
