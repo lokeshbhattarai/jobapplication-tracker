@@ -43,15 +43,15 @@ public class ResourcesController {
 
     @Autowired
     private FileValidator fileValidator;
- 
+
     @Autowired
     private MultiFileValidator multiFileValidator;
- 
+
     @InitBinder("fileBucket")
     protected void initBinderFileBucket(WebDataBinder binder) {
         binder.addValidators(fileValidator);
     }
- 
+
     @InitBinder("multiFileBucket")
     protected void initBinderMultiFileBucket(WebDataBinder binder) {
         binder.addValidators(multiFileValidator);
@@ -59,7 +59,7 @@ public class ResourcesController {
 
     @RequestMapping(value = {"/filesupload"}, method = RequestMethod.GET)
     public String getHomePage(ModelMap model) {
-        
+
         return "filesupload";
     }
 
@@ -79,7 +79,7 @@ public class ResourcesController {
             if (multipartFile != null && !multipartFile.isEmpty()) {
                 try {
                     String fileName = multipartFile.getOriginalFilename();
-                    multipartFile.transferTo(new File("\\tmp\\"+fileName));
+                    multipartFile.transferTo(new File("\\tmp\\" + fileName));
                     model.addAttribute("fileName", fileName);
                     return "success";
                 } catch (Exception e) {
@@ -108,13 +108,31 @@ public class ResourcesController {
             System.out.println("Fetching files");
             List<String> fileNames = new ArrayList<String>();
             for (FileUpload bucket : multiFileBucket.getFiles()) {
-                FileCopyUtils.copy(bucket.getFile().getBytes(), new File("\\tmp\\"+bucket.getFile().getOriginalFilename()));
+                FileCopyUtils.copy(bucket.getFile().getBytes(), new File("\\tmp\\" + bucket.getFile().getOriginalFilename()));
                 fileNames.add(bucket.getFile().getOriginalFilename());
-            }
 
+            }
+            List<String> fileList = new ArrayList<>();
+            fileList = listFiles("c:\\tmp\\");
             model.addAttribute("fileNames", fileNames);
-            return "multiSuccess";
+            
+            model.addAttribute("fileList", fileList);
+            return "userfaq";
         }
+    }
+
+    public List<String> listFiles(String directoryName) {
+        File directory = new File(directoryName);
+        //get all the files from a directory
+        List<String> fileList = new ArrayList<>();
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if (file.isFile()) {
+                System.out.println(file.getName());
+                fileList.add(file.getName());
+            }
+        }
+        return fileList;
     }
 
 }
