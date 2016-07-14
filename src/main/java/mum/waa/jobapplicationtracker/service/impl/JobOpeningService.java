@@ -15,12 +15,14 @@ import mum.waa.jobapplicationtracker.service.IuserService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author lokex
  */
 @Service
+@Transactional
 public class JobOpeningService implements IJobOpeningService{
 
     @Autowired

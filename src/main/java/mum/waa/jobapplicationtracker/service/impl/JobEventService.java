@@ -13,12 +13,14 @@ import mum.waa.jobapplicationtracker.service.IJobOpeningService;
 import mum.waa.jobapplicationtracker.service.IuserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author lokex
  */
 @Service
+@Transactional
 public class JobEventService implements IJobEventService{
 
     @Autowired private IJobEventDao jobEventDao;
