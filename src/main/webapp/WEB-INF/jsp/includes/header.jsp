@@ -40,12 +40,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
                                 &nbsp; <i class="fa fa-user" aria-hidden="true"></i> Welcome User: <%
                                     if(session.getAttribute("user")==null) {
-                                        response.sendRedirect("login");
-                                    }
+                                        //response.sendRedirect("login");
+                                        out.println("<script>window.location.href='login';</script>");
+                                    } else {
                                     User u = (User)session.getAttribute("user");
                                     
                                     out.println(u.getUsername());
-                                        
+                                    }
                                     %> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">

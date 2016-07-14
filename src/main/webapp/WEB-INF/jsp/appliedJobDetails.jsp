@@ -11,50 +11,37 @@
 <h1 class="page-header"><i class="fa fa-cubes" aria-hidden="true"></i> Apply Job</h1>
 <a href="applyjob/addjob" class="btn btn-primary pull-right dashboardbtn">New Job Record</a>
 <div class="row">
-    <form:form modelAttribute="job" class="form-horizontal">
-    <div role="main" class="container theme-showcase"  >
-        <div>
-            <div class="col-lg-12">
-                
-                <div id = "jobTitle" class="page-header">
-                    <h2 >${job.jobTitle}</h2>
-                </div>
-                
-                <div id="jobDescription">
-                    <h2 >${job.jobDescription}</h2>
-                </div>
-                
-                <div id="companyName">
-                    <h2 >${job.companyName}</h2>
-                </div>
-               <div id="companyAddress">
-                    <h2 >${job.companyAddress}</h2>
-                </div>
-                
-                <div id="appliedDate">
-                    <h2 >${job.appliedDate}</h2>
-                </div>
-                
-                <div id="contactPerson">
-                    <h2 >${job.contactPerson}</h2>
-                </div>
-                
-                <div id="contactNumber">
-                    <h2 >${job.contactNumber}</h2>
-                </div>
-                
-                    <c:forEach items="${job.logs}" var = "jobLog">
-                        <div id="jobLogItem">
-                            
-                            <p>${jobLog.title}</p>
-                            <p>${jobLog.comment}</p>
-                        </div>>
-                    </c:forEach>                
+    <div class="col-lg-6">Job Log</div>
+    <div class="col-lg-6">Job</div>
+    <div class="col-lg-6">
+
+        <c:forEach items="${job.logs}" var = "jobLog">
+            <div class="box">
+
+                <h5>${jobLog.title}</h5>
+                <p>${jobLog.comment}</p>
             </div>
+        </c:forEach>
+
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="bg-info" style="border:2px solid #green;border-radius: 5px;padding:5px;">
+        <h3>${job.jobTitle}</h3>
+        <p>${job.jobDescription}</p>
+        <div><b>${job.companyName}</b></div>
+        <div>${job.companyAddress}</div>
+        <div>${job.appliedDate}</div>
+        <div>${job.contactPerson}</div>
+        <div>${job.contactNumber}</div>
         </div>
     </div>
-<!--    <script src="resources/js/controller/dirPagination.js"></script>
-    <script src="resources/js/controller/app.js"></script>-->
-    </form:form>
+
+</div>
+
+</div>
+</div>
+</div>
 </div>
 <%@include  file="includes/footer.jsp" %>
