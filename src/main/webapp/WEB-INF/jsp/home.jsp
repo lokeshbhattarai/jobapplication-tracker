@@ -27,7 +27,7 @@
             Apply Jobs
         </div>
         <div class="panel-body">
-            <c:forEach items="${applyjobs}" var="job" begin="1" end="5">
+            <c:forEach items="${applyjobs}" var="job" begin="0" end="5">
             <div class="box">
                 <h3><a href="<c:url value='/applyjob/viewJobDetails?jobId=${job.id}'></c:url>">${job.companyName}</a></h3>
                 <span class="text-italic">${job.jobTitle}</span> <br> 
