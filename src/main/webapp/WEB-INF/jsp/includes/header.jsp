@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Dashboard</title>
+        <title>Job Tracker Application</title>
 
         <link href='<c:url value="/resources/css/bootstrap.css"></c:url>' rel="stylesheet">
         <!--<link href='<c:url value="/resources/css/datepicker3.css"></c:url>' rel="stylesheet">-->
@@ -39,10 +39,13 @@
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
                                 &nbsp; <i class="fa fa-user" aria-hidden="true"></i> Welcome User: <%
-                                    
+                                    if(session.getAttribute("user")==null) {
+                                        response.sendRedirect("login");
+                                    }
                                     User u = (User)session.getAttribute("user");
+                                    
                                     out.println(u.getUsername());
-            
+                                        
                                     %> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
