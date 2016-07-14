@@ -4,21 +4,16 @@
     Author     : Dilip
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
- 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Upload Multiple Files</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet" type="text/css"></link>
-    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet" type="text/css"></link>
-</head>
-<body> 
- 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="includes/header.jsp" %>
+
+<h1 class="page-header"><i class="fa fa-gears" aria-hidden="true"></i> Resources</h1>
+<a href="#" class="btn btn-primary pull-right dashboardbtn">Upload Resources</a>
     <div class="form-container">
-        <h1>Upload Multiple Files </h1>
+        
         <form:form method="POST" modelAttribute="multiFileBucket" enctype="multipart/form-data" class="form-horizontal">
          
             <c:forEach var="v" varStatus="vs" items="${multiFileBucket.files}">
@@ -36,7 +31,6 @@
         </form:form>
          
         <br/>
-        <a href="<c:url value='/welcome' />">Home</a>
+       
     </div>
-</body>
-</html>
+<%@include  file="includes/footer.jsp" %>
