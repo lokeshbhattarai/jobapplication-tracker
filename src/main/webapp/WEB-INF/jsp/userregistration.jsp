@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -24,7 +25,7 @@
                 Email: <input type="email" ng-model="user.email" required /><br/>
                 Username: <input type="text" ng-model="user.usesrname" required /><br/>
                 Password: <input type="password" ng-model="user.password" required /><br/>
-                Re password: <input type="password" ng-model="user.repassword" required /><br/>
+                Re password: <input type="password" ng-model="user.repassword" required name="repassword"/><br/>
                 Phone: <input type="text" ng-model="user.phone" required /><br/>
 
                 <input type="button" ng-click="register(user)" value="Register" />

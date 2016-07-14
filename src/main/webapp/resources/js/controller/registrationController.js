@@ -15,7 +15,12 @@ registrationApp.controller('registrationController', function($scope, $http){
         
         $http.post('register', angular.toJson(user))
                 .success(function(data){
+                    if(data.message == 'ok')
                     alert('User registered successfully !!!');
+                else{
+                    $scope.error = data.message;
+                    alert('Error: ' + data.message);
+                }
         });
     };
     

@@ -8,6 +8,36 @@
 <%@include file="includes/header.jsp" %>
 
 <h1 class="page-header"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</h1>
- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt metus convallis est suscipit, a facilisis lacus hendrerit. Donec tincidunt neque eget suscipit sagittis. Proin aliquet tellus ante, non lobortis leo luctus id. Duis nec ante hendrerit, gravida diam et, consequat quam. Vestibulum accumsan pretium velit, at vestibulum odio lobortis ut. Ut eget augue quam. Fusce sit amet porttitor tortor. Sed eu ipsum arcu. Donec lobortis tellus sit amet lorem ultricies volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<form class="form-horizontal" method="post">
+     <div class="form-group">
+        <label for="" class="col-lg-2">Old Password</label>
+        <div class="col-lg-10">
+            <input type="password" class="form-control" name="oldpassword"/>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="" class="col-lg-2">New Password</label>
+        <div class="col-lg-10">
+            <input type="password" class="form-control" name="newpassword"/>
+        </div>
+    </div>
+    
+      <div class="form-group">
+        <label for="" class="col-lg-2">Re Type Password</label>
+        <div class="col-lg-10">
+            <input type="password" class="form-control" name="repassword"/>
+        </div>
+    </div>
+    
+    <div class="form-group">
+             <label for="" class="col-lg-2">&nbsp;</label>
+        <div class="col-lg-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>    
+    
+    
+</form>
                
  <%@include  file="includes/footer.jsp" %>                

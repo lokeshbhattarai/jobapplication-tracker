@@ -17,4 +17,5 @@ public interface INotificationService {
      void addNotificationLog(long userId,NotificationLog notificationLog);
      NotificationLog getNotificationById(long notificationId);
      void markNotificationAsRead(long notificationId,boolean isRead);
+     List<NotificationLog> getUnreadNotifications(long userId);
 }

@@ -13,12 +13,14 @@ import mum.waa.jobapplicationtracker.service.IJobOpeningService;
 import mum.waa.jobapplicationtracker.service.IuserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author lokex
  */
 @Service
+@Transactional
 public class JobEventService implements IJobEventService{
 
     @Autowired private IJobEventDao jobEventDao;
@@ -29,12 +31,12 @@ public class JobEventService implements IJobEventService{
     
     @Override
     public List<JobEvent> getAllJobEvents(long userId) {
-        return jobEventDao.getAllJobEvents(userId);
+        return jobEventDao.getAllJobEvents(userService.getById(userId));
     }
 
     @Override
     public List<JobEvent> getJobEventsByJob(long userId, long jobOpeningId) {
-        return jobEventDao.getJobEventsByJob(userId, jobOpeningId);
+        return jobEventDao.getJobEventsByJob(userService.getById(userId), jobOpeningService.getById(jobOpeningId));
     }
 
     @Override

@@ -12,11 +12,11 @@ jobApp.controller('jobController', function($scope, $http){
             alert(msg);
             return;
         }
-        
-        $http.post('addjob', angular.toJson(user))
-                .success(function(data){
+               
+        $http.post('addjob/', angular.toJson(job))
+               .success(function(data){
                     alert('Job saved successfully !!!');
-        });
+        }).error(function(data){alert(data)});
     };
     
     isValid = function(job){
@@ -36,8 +36,8 @@ jobApp.controller('jobController', function($scope, $http){
             msg +='Please provide title of the position.\n';
         if(job.jobDescription == null || job.jobDescription == '')
             msg +='Please provide job description.\n';
-        if(job.appliedDate == null || job.appliedDate == '')
-            msg += 'Please provide job applied date.\n';
+        //if(job.appliedDate == null || job.appliedDate == '')
+        //    msg += 'Please provide job applied date.\n';
         if(job.contactPerson == null || job.contactPerson == '')
             msg += 'Please provide contact person for the job.\n';
         if(job.contactNumber == null || job.contactNumber == '')

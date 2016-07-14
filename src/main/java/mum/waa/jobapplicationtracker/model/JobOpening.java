@@ -5,6 +5,7 @@
  */
 package mum.waa.jobapplicationtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CollectionTable;
@@ -29,6 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "job_openings")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobOpening {
 
     @Id
@@ -45,10 +47,8 @@ public class JobOpening {
     
     private String jobDescription;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "applied_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime appliedDate;
+    private String appliedDate;
     
     @ElementCollection
     @CollectionTable(name="req_technologies",joinColumns = @JoinColumn(name="id"))
@@ -58,10 +58,10 @@ public class JobOpening {
     
     private int statusId;
     
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "end_date")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime endDate;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    private String endDate;
     
     private String contactPerson;
     
@@ -127,11 +127,11 @@ public class JobOpening {
         this.jobDescription = jobDescription;
     }
 
-    public LocalDateTime getAppliedDate() {
+    public String getAppliedDate() {
         return appliedDate;
     }
 
-    public void setAppliedDate(LocalDateTime appliedDate) {
+    public void setAppliedDate(String appliedDate) {
         this.appliedDate = appliedDate;
     }
 
@@ -151,11 +151,11 @@ public class JobOpening {
         this.statusId = statusId;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

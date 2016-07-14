@@ -13,9 +13,14 @@ import mum.waa.jobapplicationtracker.model.User;
  */
 public interface IuserService {
 
+   boolean validateRetypePassword(User user);
    long addNewUser(User user);
    boolean authenticate(User user);
    
    User getById(long userId);
+   
+   User getByUsername(String username);
+   
+   void updateUser(User user);
     
 }

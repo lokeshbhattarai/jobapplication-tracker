@@ -7,6 +7,7 @@ package mum.waa.jobapplicationtracker.persistance;
 
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.NotificationLog;
+import mum.waa.jobapplicationtracker.model.User;
 
 /**
  *
@@ -15,9 +16,9 @@ import mum.waa.jobapplicationtracker.model.NotificationLog;
 public interface INotificationLogDao {
     void addNotification(NotificationLog notification);
     
-    List<NotificationLog> getAllNotifications(long userId);
+    List<NotificationLog> getAllNotifications(User user);
     
-    List<NotificationLog> getUnreadNotifications(long userId);
+    List<NotificationLog> getUnreadNotifications(User user);
     
     NotificationLog getById(long notificationId);
     

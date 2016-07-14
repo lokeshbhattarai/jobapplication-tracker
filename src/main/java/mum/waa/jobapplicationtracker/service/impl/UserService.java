@@ -37,6 +37,14 @@ public class UserService implements IuserService{
        if(matchedUser!=null){
        
            if(matchedUser.getPassword().equals(user.getPassword())){
+               user.setId(matchedUser.getId());
+               user.setEmail(matchedUser.getEmail());
+               user.setFirstName(matchedUser.getFirstName());
+               user.setLastName(matchedUser.getLastName());
+               user.setRole(matchedUser.getRole());
+               user.setPhone(matchedUser.getPhone());
+               user.setCreatedDate(matchedUser.getCreatedDate());
+               
                return true;
            }
             
@@ -48,6 +56,21 @@ public class UserService implements IuserService{
     @Override
     public User getById(long userId) {
         return userDao.getUser(userId);
+    }
+    
+    @Override
+    public User getByUsername(String username) {
+        return userDao.getByUserName(username);
+    }
+
+    @Override
+    public boolean validateRetypePassword(User user) {
+        return user.getPassword().equals(user.getRepassword());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
     
 }

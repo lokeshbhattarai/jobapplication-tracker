@@ -5,6 +5,7 @@
  */
 package mum.waa.jobapplicationtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "job_log")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobLog {
     
     @Id
@@ -32,9 +35,9 @@ public class JobLog {
     @Column(name="created_date")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
     
-    private String text;
+    private String title;
     
     private String comment;
     
@@ -57,20 +60,20 @@ public class JobLog {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
-    public String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String text) {
+        this.title = text;
     }
 
     public String getComment() {

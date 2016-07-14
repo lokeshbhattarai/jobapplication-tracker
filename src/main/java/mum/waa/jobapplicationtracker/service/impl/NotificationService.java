@@ -12,12 +12,14 @@ import mum.waa.jobapplicationtracker.service.INotificationService;
 import mum.waa.jobapplicationtracker.service.IuserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author lokex
  */
 @Service
+@Transactional
 public class NotificationService implements INotificationService{
 
     @Autowired private INotificationLogDao notificationLogDao;
@@ -25,7 +27,7 @@ public class NotificationService implements INotificationService{
     
     @Override
     public List<NotificationLog> getNotificationLogs(long userId) {
-        return notificationLogDao.getAllNotifications(userId);
+        return notificationLogDao.getAllNotifications(userService.getById(userId));
     }
 
     @Override
@@ -43,6 +45,12 @@ public class NotificationService implements INotificationService{
     @Override
     public void markNotificationAsRead(long notificationId,boolean isRead) {
         notificationLogDao.updateNotificationAsRead(notificationId,isRead);
+    }
+
+    @Override
+    public List<NotificationLog> getUnreadNotifications(long userId) {
+        return notificationLogDao.getUnreadNotifications(userService.getById(userId));
+        
     }
     
 }

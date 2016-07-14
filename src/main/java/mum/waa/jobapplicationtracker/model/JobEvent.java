@@ -5,6 +5,7 @@
  */
 package mum.waa.jobapplicationtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
+import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -24,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name="job_events")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JobEvent {
     
     @Id
@@ -42,26 +44,36 @@ public class JobEvent {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "event_date", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDateTime eventDate;
+    private LocalDate eventDate; //a
     
     @Column(name="remind_me")
-    private boolean remindMe;
+    private boolean remindMe; //a
     
     @Column(name="remind_me_before")
-    private int remindDayBefore;
+    private int remindDayBefore; //a
     
     @Column(name="remind_date")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private String remindDate;
     
-    private String comment;
+    private String comment; //a
 
+    private String selectedJobCategory;
+    
     public JobEvent() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getSelectedJobCategory() {
+        return selectedJobCategory;
+    }
+
+    public void setSelectedJobCategory(String selectedJobCategory) {
+        this.selectedJobCategory = selectedJobCategory;
     }
 
     public void setId(Long id) {
@@ -84,11 +96,11 @@ public class JobEvent {
         this.user = user;
     }
 
-    public LocalDateTime getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(LocalDateTime eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 

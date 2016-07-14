@@ -8,6 +8,7 @@ package mum.waa.jobapplicationtracker.persistance.impl;
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobOpening;
 import mum.waa.jobapplicationtracker.model.NotificationLog;
+import mum.waa.jobapplicationtracker.model.User;
 import mum.waa.jobapplicationtracker.persistance.AbstractDao;
 import mum.waa.jobapplicationtracker.persistance.INotificationLogDao;
 import org.hibernate.Criteria;
@@ -28,16 +29,16 @@ public class NotificationLogDao extends AbstractDao<Long, NotificationLog> imple
     }
 
     @Override
-    public List<NotificationLog> getAllNotifications(long userId) {
+    public List<NotificationLog> getAllNotifications(User user) {
         Criteria criteria = createEntityCriteria();
-         criteria.add(Restrictions.eq("user_id", userId));
+         criteria.add(Restrictions.eq("user", user));
          return (List<NotificationLog>) criteria.list();
     }
 
     @Override
-    public List<NotificationLog> getUnreadNotifications(long userId) {
+    public List<NotificationLog> getUnreadNotifications(User user) {
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("user_id", userId));
+        criteria.add(Restrictions.eq("user", user));
         criteria.add(Restrictions.eq("isRead", false));
         
         return (List<NotificationLog>) criteria.list();
