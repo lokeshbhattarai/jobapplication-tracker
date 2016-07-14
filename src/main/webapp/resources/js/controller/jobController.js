@@ -16,6 +16,7 @@ jobApp.controller('jobController', function($scope, $http){
         $http.post('addjob/', angular.toJson(job))
                .success(function(data){
                     alert('Job saved successfully !!!');
+                    window.location = 'http://localhost:8080/JobTracker/applyjob';
         }).error(function(data){alert(data)});
     };
     

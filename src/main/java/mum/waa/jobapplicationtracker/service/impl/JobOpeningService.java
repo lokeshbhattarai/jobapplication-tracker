@@ -6,6 +6,7 @@
 package mum.waa.jobapplicationtracker.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import mum.waa.jobapplicationtracker.model.JobLog;
 import mum.waa.jobapplicationtracker.model.JobOpening;
@@ -66,9 +67,10 @@ public class JobOpeningService implements IJobOpeningService{
         jobLog.setJobOpening(getById(jobOpeningId));
         
         LocalDate localDate = LocalDate.now();
+        Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(localDate);
-        jobLog.setCreatedDate(date);
+        String datestr = sdf.format(date);
+        jobLog.setCreatedDate(datestr);
         jobLogDao.addJobLog(jobLog);
     }
 
