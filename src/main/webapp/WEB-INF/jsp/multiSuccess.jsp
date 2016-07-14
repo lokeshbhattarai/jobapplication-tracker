@@ -19,7 +19,6 @@
                 File  <strong>${fileName}</strong> uploaded successfully<br/>
             </c:forEach>
             <br/>
-        <a href="<c:url value='/welcome' />">Home</a>
     </div>
 </body>
 </html>
